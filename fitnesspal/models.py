@@ -3,6 +3,8 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 class Calories(models.Model):
     food_name = models.CharField(max_length=20)
@@ -16,9 +18,8 @@ class Exercise(models.Model):
     def __str__(self):
         return self.exercise_name
 
-class User(models.Model):
-   user_name = models.CharField(max_length=40)
-   password = models.CharField(max_length=20)
+class Profile(models.Model):
+   user = models.OneToOneField(User, on_delete=models.CASCADE)
    food_eat = models.ManyToManyField(Calories)
    exercise = models.ManyToManyField(Exercise)
 
