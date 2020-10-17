@@ -7,4 +7,5 @@ from django.shortcuts import render
 
 
 def index(request):
+    """Views for home page"""
     return render(request, 'fitnesspal/index.html')
