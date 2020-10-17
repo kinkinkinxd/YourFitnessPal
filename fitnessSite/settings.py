@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'fitnesspal.apps.FitnesspalConfig',
+    'fitnesspal',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
