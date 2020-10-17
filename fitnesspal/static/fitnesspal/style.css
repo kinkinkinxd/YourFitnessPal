@@ -1,0 +1,13 @@
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+body {
+  background-color: black;
+}
+.about-us {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: white;
+}
