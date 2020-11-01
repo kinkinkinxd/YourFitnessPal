@@ -1,13 +1,15 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
 <body>
+<div class="bg-index">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 ">
         <img class="image-thumbnail" src="../../static/fitnesspal/images/logo.png" alt="logo" width="72" height="72">
         <h5 class="my-0 mr-md-auto font-weight-normal text-white">YourFitnessPal</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-white" href="#">Home</a>
+            <a class="p-2 text-white" href="#">Daily</a>
             <a class="p-2 text-white" href="#">Workout</a>
-            <a class="p-2 text-white" href="#">Nutrition</a>
+            <a class="p-2 text-white" href="{%  url 'fitnesspal:calories' %}">Calories</a>
         </nav>
         <a class="btn btn-outline-primary text-white border-white" href="#">Sign up</a>
     </div>
@@ -21,9 +23,7 @@
         </div>
 
     </main>
-
-
-
+</div>
 </body>
 
 {% endblock %}

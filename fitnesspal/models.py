@@ -12,11 +12,13 @@ class Calories(models.Model):
     def __str__(self):
         return self.food_name
 
+
 class Exercise(models.Model):
     exercise_name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.exercise_name
+
 
 class Profile(models.Model):
    user = models.OneToOneField(User, on_delete=models.CASCADE)
