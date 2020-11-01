@@ -22,6 +22,6 @@ urlpatterns = [
     path('', include('fitnesspal.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', views.signup_view, name='signup'),
+    path('signup/', views.signup, name='signup'),
 
 ]

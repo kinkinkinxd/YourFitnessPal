@@ -12,7 +12,7 @@
 				<img src="../../static/fitnesspal/images/logo.png" alt="form">
 				<p class="text-1">Sign Up</p>
 			</div>
-			<form class="form-detail" action="#" method="post" id="myform">
+			<form class="form-detail" action="#" method="post" id="myform"> {% csrf_token %}
 				<div class="form-row">
 					<label for="username">USERNAME</label>
 					<input type="text" name="username" id="username" class="input-text">

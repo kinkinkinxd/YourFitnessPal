@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render
 
 
-def signup_view(request):
+def signup(request):
     if request.method =='POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
