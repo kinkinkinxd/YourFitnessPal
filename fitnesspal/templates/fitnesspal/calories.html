@@ -7,23 +7,27 @@
         <br/>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm">
+                <form action="{% url 'fitnesspal:calculate_calories' %}" method='POST'>
+                    {% csrf_token %}
                     <div class="card-body row no-gutters align-items-center">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
                         </div>
                         <!--end of col-->
-                        <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search"
-                                   placeholder="Search for food calories">
-                        </div>
-                        <!--end of col-->
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-dark" type="submit">Calculate</button>
-                        </div>
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" name="food-input"
+                                    placeholder="Search for food calories">
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">       
+                                <button href="{% url 'fitnesspal:calculate_calories'%}"  class="btn btn-lg btn-dark" type="submit">Calculate</button>
+                            </div>
                         <!--end of col-->
                     </div>
                 </form>
+                {% if pic %}<img src={{pic}}>{% endif %}
+                {% if name %}<p> Food name: {{name}}</p>{% endif %}
+                {% if cal %}<p> Total calories: {{cal}}</p>{% endif %}
             </div>
             <!--end of col-->
         </div>
