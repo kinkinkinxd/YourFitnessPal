@@ -3,9 +3,10 @@ from django.views import generic
 from django.http import HttpResponse
 import requests
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 BASE_URL = 'https://trackapi.nutritionix.com'
+
 
 def index(request):
     return render(request, 'fitnesspal/index.html')
