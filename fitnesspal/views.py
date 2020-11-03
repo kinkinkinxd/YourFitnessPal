@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
+from django.contrib import messages
 import requests
 
 from django.shortcuts import render
@@ -72,8 +73,8 @@ def get_nutrients_from_nl_query(
     # Set the headers
     headers = {
         'Content-Type': 'application/json',  # Set the type of the body sent
-        'x-app-id': "73ada124",      # Your Nutritionix Applicatoin ID
-        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",    # Your Nutritionix Application Key
+        'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
+        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
         'x-remote-user-id': '0'  # USe 0 for development according to the docs
     }
     # Normally I would just use **kwargs to hold the values, but making it verbose is easier for users
@@ -110,10 +111,17 @@ def get_nutrients_from_nl_query(
 
 
 def calculate_calories(request):
-    res = get_nutrients_from_nl_query(request.POST["food-input"])
-    cal = res.json()["foods"][0]["nf_calories"]
-    name = res.json()["foods"][0]["food_name"]
-    pic = res.json()["foods"][0]["photo"]["thumb"]
-    return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name' : name, 'pic' : pic} )
+    try:
+        res = get_nutrients_from_nl_query(request.POST["food-input"])
+    except AssertionError:
+        messages.warning(request, "Result not found")
+        return render(request, 'fitnesspal/calories.html')
+    else:
+        cal = res.json()["foods"][0]["nf_calories"]
+        name = res.json()["foods"][0]["food_name"]
+        pic = res.json()["foods"][0]["photo"]["thumb"]
+        size = res.json()["foods"][0]['serving_weight_grams']
+        fat = res.json()["foods"][0]["nf_total_fat"]
+    return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size, 'fat': fat})
 
 # def add_calories(request, calories_id):
