@@ -28,6 +28,7 @@
                 {% if pic %}<img src={{pic}}>{% endif %}
                 {% if name %}<p> Food name: {{name}}</p>{% endif %}
                 {% if cal %}<p> Total calories: {{cal}}</p>{% endif %}
+                <button href="{% url 'fitnesspal:calculate_calories'%}"  class="btn btn-lg btn-dark" type="submit">Add to user</button>
             </div>
             <!--end of col-->
         </div>

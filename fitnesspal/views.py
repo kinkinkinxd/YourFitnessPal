@@ -115,4 +115,8 @@ def calculate_calories(request):
     pic = res.json()["foods"][0]["photo"]["thumb"]
     return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name' : name, 'pic' : pic} )
 
-# def add_calories(request, calories_id):
+# def add_food_calories(requests)
+#     res = get_nutrients_from_nl_query(request.POST["food-input"])
+#     cal = res.json()["foods"][0]["nf_calories"]
+#     name = res.json()["foods"][0]["food_name"]
+
