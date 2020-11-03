@@ -6,6 +6,6 @@ from . import views
 
 
 app_name = 'fitnesspal'
-urlpatterns = [
+urlpatterns = [path('', views.index, name='index'),
 
 ]

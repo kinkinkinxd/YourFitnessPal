@@ -19,7 +19,7 @@ class AuthenticationTest(TestCase):
         """Test user logged in, the user username should display on the index page."""
         response = self.client.post(reverse('login'), self.user)
         self.assertEqual(response.status_code, 302)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse('fitnesspal:index'))
         self.assertTrue(response.context['user'].is_authenticated)
         self.assertContains(response, f'Hello {self.user["username"]}')
 
