@@ -9,3 +9,10 @@ to do for each day. You can tell us which exercise you like and we will make a s
 - [Requirement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Requirements)
 - [Iteration 1 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-1-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/1)
 - [Iteration 2 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-2-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/2)
+- [Iteration 3 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-3-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/3)
+## Licensing
+Contact our team members to license.
+* @jeanyjean
+* @kinkinkinxd
+* @BellBoyZz
+* @PanitanPlengkham
