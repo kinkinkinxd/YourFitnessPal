@@ -124,4 +124,8 @@ def calculate_calories(request):
         fat = res.json()["foods"][0]["nf_total_fat"]
     return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size, 'fat': fat})
 
-# def add_calories(request, calories_id):
+# def add_food_calories(requests)
+#     res = get_nutrients_from_nl_query(request.POST["food-input"])
+#     cal = res.json()["foods"][0]["nf_calories"]
+#     name = res.json()["foods"][0]["food_name"]
+
