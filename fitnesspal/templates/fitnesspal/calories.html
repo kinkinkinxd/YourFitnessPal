@@ -1,19 +1,6 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
     <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-color">
-        <img class="image-thumbnail" src="../../static/fitnesspal/images/logo.png" alt="logo" width="72" height="72">
-        <h5 class="my-0 mr-md-auto font-weight-normal text-white">YourFitnessPal</h5>
-        <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-white" href="{% url 'fitnesspal:index' %}">Home</a>
-            <a class="p-2 text-white" href="#">Daily</a>
-            <a class="p-2 text-white" href="#">Workout</a>
-            <a class="p-2 text-white" href="{% url 'fitnesspal:calories' %}">Calories</a>
-        </nav>
-        <a class="btn btn-outline-primary text-white border-white" href="#">Sign up</a>
-    </div>
-    <b>{% if messages %}
-    {% endif %}</b>
     <div class="container">
         <br/>
         <div class="row justify-content-center">
@@ -40,20 +27,21 @@
                         <!--end of col-->
                     </div>
                 </form>
-                <ul class="messages text-danger display-2">
+                <ul class="messages text-danger font-weight-bold font-italic display-2">
                     {% for msg in messages %}
                         {{ msg }}
                     {% endfor %}
                 </ul>
                 {% if cal %}
                     <div class="container-fluid inner k">
-                    <table class="tableizer-table">
+                    <table class="tableizer-table bg-color4">
                     <tr class="tableizer-firstrow">
-                        <th>Picture</th>
+                        <th></th>
                         <th>Food name</th>
                         <th>Calories</th>
                         <th>Total fat</th>
                         <th>Gram</th>
+                        <th class="bg-white"></th>
                     </tr>
                     <tr>
                         <td><img src="{{ pic }}"></td>
@@ -61,19 +49,20 @@
                         <td>{{ cal }}</td>
                         <td>{{ fat }}</td>
                         <td>{{ size }} g</td>
+                        <td class="bg-white">
+                            <button href="{% url 'fitnesspal:calculate_calories' %}"
+                                    class="btn btn-lg bg-color2 text-white" type="submit">Add
+                            </button>
+                        </td>
                     </tr>
                 {% else %}
-                    {#                    <img src="#">#}
+{#                    {<img src="#">}#}
                 {% endif %}
                 </table>
                 </div>
             </div>
-                <!--end of col-->
-                {% if pic %}<img src={{pic}}>{% endif %}
-                {% if name %}<p> Food name: {{name}}</p>{% endif %}
-                {% if cal %}<p> Total calories: {{cal}}</p>{% endif %}
-                <button href="{% url 'fitnesspal:calculate_calories'%}"  class="btn btn-lg btn-dark" type="submit">Add to user</button>
-            </div>
+            <!--end of col-->
         </div>
+    </div>
     </body>
 {% endblock %}
