@@ -73,34 +73,23 @@ li > a:hover {
     font-family: 'Montserrat', sans-serif;
 }
 
-.site-title {
-    font-size: 50px;
-    font-weight: 300;
-    text-transform: uppercase;
-}
 
-/* text colors */
-
-
-.k {
-    font-color: white;
-}
 
 
 
 /* table */
 table {
-    margin: 10px auto;
+    margin: 20px auto;
 }
 
 table > tbody > tr.tableizer-firstrow > th {
-    padding: 10px;
+    padding: 20px;
     background-color: #FAC172;
 }
 
 body > div.container-fluid.inner > table > tbody > tr > td {
-    border: 6px solid #FAC172;
-    width: 170px;
-    padding: 10px;
+    border: 12px solid #F6E2BC;
+    width: 300px;
+    padding: 20px;
     background-color: #F6E2BC;
 }
