@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import authenticate, login
 from django.views import generic
-from django.http import HttpResponse
 from django.contrib import messages
 import requests
 
-from django.shortcuts import render
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
@@ -128,4 +128,7 @@ def calculate_calories(request):
 #     res = get_nutrients_from_nl_query(request.POST["food-input"])
 #     cal = res.json()["foods"][0]["nf_calories"]
 #     name = res.json()["foods"][0]["food_name"]
+
+
+
 

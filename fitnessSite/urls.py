@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from . import views
+from django.views.generic.base import TemplateView
 
 
 urlpatterns = [
-    # path('', views.index),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', views.signup, name='signup'),
     path('', include('fitnesspal.urls')),
 ]
