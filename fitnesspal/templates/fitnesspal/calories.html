@@ -1,33 +1,68 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
     <body>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <div class="container" >
+    <div class="container">
         <br/>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm">
+                <form action="{% url 'fitnesspal:calculate_calories' %}" method='POST'>
+                    {% csrf_token %}
                     <div class="card-body row no-gutters align-items-center">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search"
+                            <input class="form-control form-control-lg form-control-borderless" name="food-input"
                                    placeholder="Search for food calories">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-dark" type="submit">Calculate</button>
+                            <button href="{% url 'fitnesspal:calculate_calories' %}"
+                                    class="btn btn-lg bg-color2 text-white"
+                                    type="submit">Calculate
+                            </button>
+
                         </div>
                         <!--end of col-->
                     </div>
                 </form>
+
+                <ul class="messages text-danger font-weight-bold font-italic display-2">
+                    {% for msg in messages %}
+                        {{ msg }}
+                    {% endfor %}
+                </ul>
+                {% if cal %}
+                    <div class="container-fluid inner k">
+                    <table class="tableizer-table bg-color4">
+                    <tr class="tableizer-firstrow">
+                        <th></th>
+                        <th>Food name</th>
+                        <th>Calories</th>
+                        <th>Total fat</th>
+                        <th>Gram</th>
+                        <th class="bg-white"></th>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ pic }}"></td>
+                        <td>{{ name }}</td>
+                        <td>{{ cal }}</td>
+                        <td>{{ fat }}</td>
+                        <td>{{ size }} g</td>
+                        <td class="bg-white">
+                            <button href="{% url 'fitnesspal:calculate_calories' %}"
+                                    class="btn btn-lg bg-color2 text-white" type="submit">Add
+                            </button>
+                        </td>
+                    </tr>
+                {% else %}
+                    {#<img src="#">#}
+                {% endif %}
+                </div>
             </div>
             <!--end of col-->
         </div>
     </div>
     </body>
-
 {% endblock %}
