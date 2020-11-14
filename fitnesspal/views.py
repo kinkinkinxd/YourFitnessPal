@@ -3,10 +3,21 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.contrib import messages
+from .models import Exercise
 import requests
 
 
 BASE_URL = 'https://trackapi.nutritionix.com'
+
+
+class ExerciseView(generic.ListView):
+    """Class for exercise views."""
+
+    template_name = 'fitnesspal/exercise.html'
+    context_object_name = 'exercise_list'
+
+    def get_queryset(self):
+        return Exercise.objects.filter().order_by('-calories')
 
 
 def index(request):
