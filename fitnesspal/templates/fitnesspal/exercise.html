@@ -1,13 +1,68 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
-<body>
-    {% if exercise_list %}
-    <ul>
-        {% for exercise in exercise_list%}
-            <li>{{ exercise.exercise_name }}
-            <br>
-        {% endfor %}
-    {% endif %}
-    </ul>
-</body>
+    <body>
+    <div class="container">
+        <br/>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form action="{% url 'fitnesspal:calculate_exercise' %}" method='POST'>
+                    {% csrf_token %}
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input class="form-control form-control-lg form-control-borderless" name="exercise-input"
+                                   placeholder="Search for exercise calories">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button href="{% url 'fitnesspal:calculate_exercise' %}"
+                                    class="btn btn-lg bg-color2 text-white"
+                                    type="submit">Calculate
+                            </button>
+
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+
+                <ul class="messages text-danger font-weight-bold font-italic display-2">
+                    {% for msg in messages %}
+                        {{ msg }}
+                    {% endfor %}
+                </ul>
+                {% if cal %}
+                    <div class="container-fluid inner k">
+                    <table class="tableizer-table bg-color4">
+                    <tr class="tableizer-firstrow">
+                        <th>Exercise name</th>
+                        <th>MET</th>
+                        <th>Duration</th>
+                        <th>Calories burn</th>
+                        <th class="bg-white"></th>
+                    </tr>
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>{{ met }}</td>
+                        <td>{{ duration }} min</td>
+                        <td>{{ cal}} kcal</td>
+                        <td class="bg-white">
+                            <button href="{% url 'fitnesspal:calculate_exercise' %}"
+                                    class="btn btn-lg bg-color2 text-white" type="submit">Add
+                            </button>
+                        </td>
+                    </tr>
+                {% else %}
+                    {#<img src="#">#}
+                {% endif %}
+                </table>
+            </div>
+
+        </div>
+        <!--end of col-->
+    </div>
+    </div>
+    </body>
 {% endblock %}

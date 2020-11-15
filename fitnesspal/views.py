@@ -6,8 +6,14 @@ from django.contrib import messages
 from .models import Exercise
 import requests
 
-
 BASE_URL = 'https://trackapi.nutritionix.com'
+
+HEADER ={
+        'Content-Type': 'application/json',  # Set the type of the body sent
+        'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
+        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
+        'x-remote-user-id': '0'  # USe 0 for development according to the docs
+     }
 
 
 class ExerciseView(generic.ListView):
@@ -82,12 +88,7 @@ def get_nutrients_from_nl_query(
     # }
     endpoint = '/v2/natural/nutrients'
     # Set the headers
-    headers = {
-        'Content-Type': 'application/json',  # Set the type of the body sent
-        'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
-        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
-        'x-remote-user-id': '0'  # USe 0 for development according to the docs
-    }
+    headers = HEADER
     # Normally I would just use **kwargs to hold the values, but making it verbose is easier for users
     body = {
         "query": query,
@@ -121,6 +122,61 @@ def get_nutrients_from_nl_query(
     raise AssertionError('Undocumented response status code')
 
 
+def get_exercise_from_nl_query(
+        query: str,
+        gender: str = None,
+        weight_kg: float = None,
+        height_cm: float = None,
+        age: int = None,
+        aggregate: bool = None,
+        line_delimited: bool = None) -> requests.Response:
+    """Returns the exercise in the posted query.
+
+        Get detailed nutrient breakdown of any natural language text.
+
+        Args:
+            query: the query string. Required.
+            gender: the gender of the user
+            weight_kg: the weight of the user
+            height_cm:the height of the user
+            age: the age of the user
+            aggregate: if present, it combines all the exercise into one exercise object with the exercise_name equal to the value of this field
+            line_delimited: if present, it expects only 1 exercise per line and will return an array of rules broken if there are any. i.e. 2+ exercise on a line, no exercise detected on this line, etc
+
+        Returns:
+            Response
+        """
+
+    endpoint = '/v2/natural/exercise'
+    # Set the headers
+    headers = HEADER
+    # Normally I would just use **kwargs to hold the values, but making it verbose is easier for users
+    body = {
+        "query": query,
+        "gender": gender,
+        "weight_kg": weight_kg,
+        "height_cm": height_cm,
+        "age": age,
+        "aggregate": aggregate,
+        "line_delimited": line_delimited,
+    }
+    # remove values that aren't set
+    for k in [k for k, v in body.items() if v is None]:
+        body.pop(k)
+    # send a POST request with specified headers and body to API end point
+    response = requests.post(url=BASE_URL + endpoint, json=body, headers=headers)
+    if response.status_code == 200:
+        # Operation successful
+        return response
+    if response.status_code == 400:
+        # Validation error
+        return response
+    if response.status_code == 500:
+        # Base error
+        return response
+    raise AssertionError('Undocumented response status code')
+
+
 def calculate_calories(request):
     try:
         res = get_nutrients_from_nl_query(request.POST["food-input"])
@@ -132,14 +188,30 @@ def calculate_calories(request):
         name = res.json()["foods"][0]["food_name"]
         pic = res.json()["foods"][0]["photo"]["thumb"]
         size = res.json()["foods"][0]['serving_weight_grams']
-        fat = res.json()["foods"][0]["nf_total_fat"]
-    return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size, 'fat': fat})
+        tol_fat = res.json()["foods"][0]["nf_total_fat"]
+        cholesterol = res.json()["foods"][0]["nf_cholesterol"]
+        carbohydrate = res.json()["foods"][0]["nf_total_carbohydrate"]
+        protein = res.json()["foods"][0]["nf_protein"]
+        return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size,
+                                                            'fat': tol_fat, 'cholesterol': cholesterol,
+                                                            'carbohydrate': carbohydrate, 'protein': protein})
+
+
+def exercise_calories_burn(request):
+    try:
+        res = get_exercise_from_nl_query(request.POST["exercise-input"])
+    except AssertionError:
+        messages.warning(request, "Result not found")
+        return render(request, 'fitnesspal/exercise.html')
+    else:
+        cal = res.json()["exercises"][0]["nf_calories"]
+        name = res.json()["exercises"][0]["name"]
+        duration = res.json()["exercises"][0]["duration_min"]
+        met = res.json()["exercises"][0]["met"]
+        return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
+
 
 # def add_food_calories(requests)
 #     res = get_nutrients_from_nl_query(request.POST["food-input"])
 #     cal = res.json()["foods"][0]["nf_calories"]
 #     name = res.json()["foods"][0]["food_name"]
-
-
-
-

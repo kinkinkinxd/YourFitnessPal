@@ -41,14 +41,14 @@
                         <th>Food name</th>
                         <th>Calories</th>
                         <th>Total fat</th>
-                        <th>Gram</th>
+                        <th>Weight</th>
                         <th class="bg-white"></th>
                     </tr>
                     <tr>
                         <td><img src="{{ pic }}"></td>
                         <td>{{ name }}</td>
-                        <td>{{ cal }}</td>
-                        <td>{{ fat }}</td>
+                        <td>{{ cal }} kcal</td>
+                        <td>{{ fat }} g</td>
                         <td>{{ size }} g</td>
                         <td class="bg-white">
                             <button href="{% url 'fitnesspal:calculate_calories' %}"
@@ -59,7 +59,9 @@
                 {% else %}
                     {#<img src="#">#}
                 {% endif %}
+                </table>
                 </div>
+
             </div>
             <!--end of col-->
         </div>
