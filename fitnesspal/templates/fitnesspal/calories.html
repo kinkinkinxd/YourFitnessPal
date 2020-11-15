@@ -33,17 +33,20 @@
                         {{ msg }}
                     {% endfor %}
                 </ul>
+
                 {% if new_food %}
-                    <div class="container-fluid inner k">
-                    <table class="tableizer-table bg-color4">
-                    <tr class="tableizer-firstrow">
-                        <th></th>
-                        <th>Food name</th>
-                        <th>Calories</th>
-                        <th>Total fat</th>
-                        <th>Gram</th>
-                        <th class="bg-white"></th>
+                     <table class="table table-bordered">
+                    <thead class="bg-color text-white">
+                    <tr>
+                          <th scope="col"></th>
+                        <th scope="col">Food name</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Total fat</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Option</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td><img src="{{ pic }}"></td>
                         <td>{{ new_food.food_name }}</td>
@@ -60,10 +63,11 @@
                             </form>
                         </td>
                     </tr>
-                {% else %}
-                    {#<img src="#">#}
+                    </tbody>
                 {% endif %}
+                </table>
                 </div>
+
             </div>
             <!--end of col-->
         </div>
