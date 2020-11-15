@@ -5,8 +5,10 @@ from django.views import generic
 from django.contrib import messages
 import requests
 
+from .models import Calories,Exercise,Profile
 
 BASE_URL = 'https://trackapi.nutritionix.com'
+
 
 
 def index(request):
@@ -122,13 +124,19 @@ def calculate_calories(request):
         pic = res.json()["foods"][0]["photo"]["thumb"]
         size = res.json()["foods"][0]['serving_weight_grams']
         fat = res.json()["foods"][0]["nf_total_fat"]
-    return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size, 'fat': fat})
+        # if Calories.objects.filter(food_name = name , calories = cal):
+        #     new_food = Calories.objects.filter(food_name = name , calories = cal).first()
+        # else:
+        new_food = Calories.objects.create(calories = cal, food_name = name)
+    return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic, 'size': size, 'fat': fat})
 
-# def add_food_calories(requests)
-#     res = get_nutrients_from_nl_query(request.POST["food-input"])
-#     cal = res.json()["foods"][0]["nf_calories"]
-#     name = res.json()["foods"][0]["food_name"]
+def add_food_calories(request):
+    food = Calories.objects.filter(food_name = request.POST['add_button']).last()
+    profile = Profile.objects.filter(user = request.user).first()
+    profile.calories_set.add(food)
+    return render(request, 'fitnesspal/calories.html')
 
-
-
-
+def profile(request):
+    profile = Profile.objects.filter(user = request.user).first()
+    total = Calories.objects.filter(user = profile).all()
+    return render(request, 'fitnesspal/profile.html', {'total':total})
