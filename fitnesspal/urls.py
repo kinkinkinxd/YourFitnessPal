@@ -13,3 +13,4 @@ urlpatterns = [
     path('calories/add/', views.add_food_calories, name="add_food"),
     path('profile/', views.profile, name="profile"),
 ]
+
