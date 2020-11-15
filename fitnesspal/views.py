@@ -189,12 +189,8 @@ def calculate_calories(request):
         pic = res.json()["foods"][0]["photo"]["thumb"]
         size = res.json()["foods"][0]['serving_weight_grams']
         tol_fat = res.json()["foods"][0]["nf_total_fat"]
-        cholesterol = res.json()["foods"][0]["nf_cholesterol"]
-        carbohydrate = res.json()["foods"][0]["nf_total_carbohydrate"]
-        protein = res.json()["foods"][0]["nf_protein"]
         return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size,
-                                                            'fat': tol_fat, 'cholesterol': cholesterol,
-                                                            'carbohydrate': carbohydrate, 'protein': protein})
+                                                            'fat': tol_fat})
 
 
 def exercise_calories_burn(request):
@@ -210,8 +206,3 @@ def exercise_calories_burn(request):
         met = res.json()["exercises"][0]["met"]
         return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
 
-
-# def add_food_calories(requests)
-#     res = get_nutrients_from_nl_query(request.POST["food-input"])
-#     cal = res.json()["foods"][0]["nf_calories"]
-#     name = res.json()["foods"][0]["food_name"]

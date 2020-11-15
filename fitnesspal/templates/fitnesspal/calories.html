@@ -34,30 +34,31 @@
                     {% endfor %}
                 </ul>
                 {% if cal %}
-                    <div class="container-fluid inner k">
-                    <table class="tableizer-table bg-color4">
-                    <tr class="tableizer-firstrow">
-                        <th></th>
-                        <th>Food name</th>
-                        <th>Calories</th>
-                        <th>Total fat</th>
-                        <th>Weight</th>
-                        <th class="bg-white"></th>
+                    <table class="table table-bordered">
+                    <thead class="bg-color text-white">
+                    <tr>
+                          <th scope="col"></th>
+                        <th scope="col">Food name</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Total fat</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Option</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td><img src="{{ pic }}"></td>
                         <td>{{ name }}</td>
-                        <td>{{ cal }} kcal</td>
-                        <td>{{ fat }} g</td>
-                        <td>{{ size }} g</td>
+                        <td>{{ cal }}</td>
+                        <td>{{ fat }} min</td>
+                        <td>{{ size }} kcal</td>
                         <td class="bg-white">
                             <button href="{% url 'fitnesspal:calculate_calories' %}"
                                     class="btn btn-lg bg-color2 text-white" type="submit">Add
                             </button>
                         </td>
                     </tr>
-                {% else %}
-                    {#<img src="#">#}
+                    </tbody>
                 {% endif %}
                 </table>
                 </div>
