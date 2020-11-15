@@ -10,5 +10,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('calories/', views.calories, name="calories"),
     path('calories/calculate/', views.calculate_calories, name="calculate_calories"),
+    path('profile/', views.profile, name="profile"),
 ]
 
