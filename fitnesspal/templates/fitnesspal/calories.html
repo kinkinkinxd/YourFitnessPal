@@ -33,7 +33,7 @@
                         {{ msg }}
                     {% endfor %}
                 </ul>
-                {% if cal %}
+                {% if new_food %}
                     <div class="container-fluid inner k">
                     <table class="tableizer-table bg-color4">
                     <tr class="tableizer-firstrow">
@@ -46,14 +46,18 @@
                     </tr>
                     <tr>
                         <td><img src="{{ pic }}"></td>
-                        <td>{{ name }}</td>
-                        <td>{{ cal }}</td>
+                        <td>{{ new_food.food_name }}</td>
+                        <td>{{ new_food.calories }}</td>
                         <td>{{ fat }}</td>
                         <td>{{ size }} g</td>
                         <td class="bg-white">
-                            <button href="{% url 'fitnesspal:calculate_calories' %}"
-                                    class="btn btn-lg bg-color2 text-white" type="submit">Add
+                            <form action="{% url 'fitnesspal:add_food' %}" method="post">
+                            {% csrf_token %}
+                            <!-- <input type="submit" name="add_button" value="{{new_food.food_name}}"> -->
+                            <button href="{% url 'fitnesspal:add_food' %}"
+                                    name = "add_button" class="btn btn-lg bg-color2 text-white" type="submit" value={{new_food.food_name}}>Add
                             </button>
+                            </form>
                         </td>
                     </tr>
                 {% else %}
