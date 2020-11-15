@@ -55,7 +55,7 @@
                             {% csrf_token %}
                             <!-- <input type="submit" name="add_button" value="{{new_food.food_name}}"> -->
                             <button href="{% url 'fitnesspal:add_food' %}"
-                                    name = "add_button" class="btn btn-lg bg-color2 text-white" type="submit" value={{new_food.food_name}}>Add
+                                    name = "add_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_food.food_name}}">Add
                             </button>
                             </form>
                         </td>

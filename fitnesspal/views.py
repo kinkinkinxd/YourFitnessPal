@@ -124,14 +124,14 @@ def calculate_calories(request):
         pic = res.json()["foods"][0]["photo"]["thumb"]
         size = res.json()["foods"][0]['serving_weight_grams']
         fat = res.json()["foods"][0]["nf_total_fat"]
-        if Calories.objects.filter(food_name = name , calories = cal):
-            new_food = Calories.objects.filter(food_name = name , calories = cal).first()
-        else:
-            new_food = Calories.objects.create(calories = cal, food_name = name)
+        # if Calories.objects.filter(food_name = name , calories = cal):
+        #     new_food = Calories.objects.filter(food_name = name , calories = cal).first()
+        # else:
+        new_food = Calories.objects.create(calories = cal, food_name = name)
     return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic, 'size': size, 'fat': fat})
 
 def add_food_calories(request):
-    food = Calories.objects.filter(food_name = request.POST['add_button']).first()
+    food = Calories.objects.filter(food_name = request.POST['add_button']).last()
     profile = Profile.objects.filter(user = request.user).first()
     profile.calories_set.add(food)
     return render(request, 'fitnesspal/calories.html')
