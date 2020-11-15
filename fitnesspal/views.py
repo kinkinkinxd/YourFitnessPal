@@ -74,18 +74,6 @@ def get_nutrients_from_nl_query(
     Returns:
         Response
     """
-    # default = {
-    #     "num_servings": 1,
-    #     "line_delimited": False,
-    #     "use_raw_foods": False,
-    #     "include_subrecipe": False,
-    #     "timezone": 'US/Eastern',
-    #     "consumed_at": None,
-    #     "lat": None,
-    #     "lng": None,
-    #     "use_branded_foods": False,
-    #     "locale": 'en_US',
-    # }
     endpoint = '/v2/natural/nutrients'
     # Set the headers
     headers = HEADER
