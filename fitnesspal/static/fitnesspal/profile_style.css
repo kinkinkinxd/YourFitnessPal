@@ -1,0 +1,106 @@
+.headline {
+  padding-top:20px;
+ color: #2193b0;  /* fallback for old browsers */
+color:  -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+color:  linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.profile-text {
+  color:white;
+
+}
+
+.table {
+    background-color: white;
+    color: #18AD7C;
+}
+table.table-bordered > thead > tr > th {
+  border:1px solid #1e3c72;
+}
+table.table-bordered > tbody > tr > td {
+  border:1px solid #1e3c72;
+}
+
+.form-labels {
+  font-family: 'Titillium Web', sans-serif;
+  color:#457fca;
+
+}
+
+.card a {
+	text-decoration: none ;
+	color:white;
+}
+.item-card{
+  transition:0.5s;
+  cursor:pointer;
+}
+.item-card-title{
+  font-size:25px;
+  transition:1s;
+  cursor:pointer;
+}
+.item-card-title i{
+  font-size:15px;
+  transition:1s;
+  cursor:pointer;
+  color:#ffa710
+}
+.card-text{
+  height:80px;
+  font-size: 18px;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+.card::before {
+  transform-origin: left top;
+}
+.card::after {
+  transform-origin: right bottom;
+}
+
+th{
+background: #1e3c72;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2a5298, #1e3c72); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+#username {
+font-family: 'Pacifico', cursive;
+padding-top:0px;
+padding-bottom:30px;
+}
+
+#username sub {
+  font-size: 20px;
+}
+
+
+.item{
+  padding-left:5px;
+  padding-right:5px;
+
+}
+.card {
+
+background: #457fca;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+ color:white;
+
+}
+

@@ -1,0 +1,54 @@
+
+{% extends 'fitnesspal/base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'fitnesspal/profile_style.css' %}">
+</head>
+<div class="container-fluid">
+    <h1 class="headline">Your Profile :</h1>
+        <div class="row mt-4 mb-4">
+            <div class="col-lg-5 card card-body">
+            <div class="app-title">
+
+                <h1 class="text-center profile-text mt-2">Name: {{ request.user }} </h1>
+
+            </div>
+
+        </div>
+
+
+     </div>
+
+    <h1 class="text-center headline">Added Food Items</h1>
+
+     <div class="row mt-5">
+      <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Food Name</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Carbohydrates</th>
+                    <th scope="col">Fats</th>
+                    <th scope="col">Proteins</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in food_items %}
+                <tr>
+                    <td>{{ food.name }}</td>
+                    <td>{{ food.calorie }}</td>
+                    <td>{{ food.quantity }}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'update_food' food.id %}">Update</a></td>
+                    <td><a class="btn btn-sm " href="{% url 'delete_food' food.id %}">Delete</a></td>
+
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+
