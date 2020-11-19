@@ -12,13 +12,21 @@ to do for each day. You can tell us which exercise you like and we will make a s
 | Django | 3.1 or higher |
 
 1. Clone this project to your machine(computers).
-``` git clone https://github.com/kinkinkinxd/YourFitnessPal ```
+``` 
+git clone https://github.com/kinkinkinxd/YourFitnessPal 
+```
 2. Enter this command to install all require packages.
-``` pip install -r requirements.txt ```
+``` 
+pip install -r requirements.txt 
+```
 3. Enter this command to migrate the database.
-``` python manage.py migrate ```
+``` 
+python manage.py migrate 
+```
 4. Enter this command to start running the server.
-``` python manage.py runserver ```
+``` 
+python manage.py runserver 
+```
 
 ## Project Documents
 - [Vision Statement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Vision-Statement)
