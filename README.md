@@ -77,7 +77,7 @@ python manage.py runserver
 - [Iteration 3 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-3-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/3)
 - [Iteration 4 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-4-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/4)
 - [Iteration 5 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-5-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/5)
-- [Iteration 6 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-6-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/6)
+- [Iteration 6 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-6-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/7)
 
 ## Licensing
 Contact our team members to license.
