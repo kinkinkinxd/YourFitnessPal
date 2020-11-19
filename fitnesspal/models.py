@@ -6,9 +6,13 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-   user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.IntegerField(default=0)
+    gender = models.CharField(max_length=100, default='')
+    weight = models.IntegerField(default=0)
+    height = models.IntegerField(default=0)
 
-   def __str__(self):
+    def __str__(self):
         return self.user.get_full_name()
 
 class Calories(models.Model):
