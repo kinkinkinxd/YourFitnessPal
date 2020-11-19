@@ -10,8 +10,11 @@ to do for each day. You can tell us which exercise you like and we will make a s
 - [Proposal](https://docs.google.com/document/d/103sP6B84mmsiP9LcnWPWQLlRL0_AgpyCuvy5IObfgcI/edit?ts=5f68c719#)
 - [Vision Statement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Vision-Statement)
 - [Requirement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Requirements)
-- [Code Review Procedure](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Procedure)
-- [Code Checklist](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Checklist)
+- [Code Review Procedure](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Code-Review-Procedure)
+- [Code Checklist](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Code-Checklist)
+- [Installation Instruction](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Installation-Instruction)
+
+## Iterations
 - [Iteration 1 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-1-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/1)
 - [Iteration 2 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-2-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/2)
 - [Iteration 3 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-3-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/3)
