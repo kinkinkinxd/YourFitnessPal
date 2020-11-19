@@ -6,10 +6,11 @@ YourFitnessPal web application is a website for help you to have a better life a
 to do for each day. You can tell us which exercise you like and we will make a schedule for you. The other things are Diets, which foods you should eat or shouldn’t eat, which day is your free day and you can save your information by creating a user to login to our website.
 
 ## Getting Started
-| Name | Required version(s) |
-|------|---------------------|
-| Python | 3.7 or higher |
-| Django | 3.1 or higher |
+| Name | Required version(s) | Description |
+|------|---------------------| ------------|
+| Python | 3.7 or higher | An interpreted, high-level and general-purpose programming language.|
+| Django | 3.1 or higher | A Python-based free and open-source web framework. |
+| Requests | 2.24.0 or higher | A module that allows you to send HTTP requests using Python. |
 
 * Note that for Linux/MacOS the commands are usually python3 and pip3 instead of python and pip respectively.
 
@@ -66,6 +67,7 @@ python manage.py runserver
 ```
 
 ## Project Documents
+- [Proposal](https://docs.google.com/document/d/103sP6B84mmsiP9LcnWPWQLlRL0_AgpyCuvy5IObfgcI/edit?ts=5f68c719#)
 - [Vision Statement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Vision-Statement)
 - [Requirement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Requirements)
 - [Code Review Procedure](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Procedure)
@@ -74,6 +76,8 @@ python manage.py runserver
 - [Iteration 2 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-2-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/2)
 - [Iteration 3 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-3-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/3)
 - [Iteration 4 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-4-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/4)
+- [Iteration 5 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-5-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/5)
+- [Iteration 6 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-6-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/6)
 
 ## Licensing
 Contact our team members to license.
