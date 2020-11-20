@@ -12,7 +12,7 @@ to do for each day. You can tell us which exercise you like and we will make a s
 - [Requirement](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Requirements)
 - [Code Review Procedure](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Code-Review-Procedure)
 - [Code Checklist](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Code-Checklist)
-- [Installation Instruction](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Installation-Instruction)
+- [Installation Instruction](INSTALL.md)
 
 ## Iterations
 - [Iteration 1 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-1-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/1)
