@@ -13,7 +13,7 @@ class Profile(models.Model):
     height = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.get_full_name()
+        return self.user
 
 class Calories(models.Model):
     food_name = models.CharField(max_length=20)

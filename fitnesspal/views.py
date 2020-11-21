@@ -16,7 +16,6 @@ HEADER ={
         'x-remote-user-id': '0'  # USe 0 for development according to the docs
      }
 
-
 def exercise(request):
     return render(request, 'fitnesspal/exercise.html')
 
