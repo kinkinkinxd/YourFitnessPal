@@ -4,6 +4,7 @@
 | Python | 3.7 or higher | An interpreted, high-level and general-purpose programming language.|
 | Django | 3.1 or higher | A Python-based free and open-source web framework. |
 | Requests | 2.24.0 or higher | A module that allows you to send HTTP requests using Python. |
+| Django-environ | - | Allows you to utilize 12factor inspired environment variables to configure your Django application. |
 
 * Note that for Linux/MacOS the commands are usually python3 and pip3 instead of python and pip respectively.
 
@@ -15,7 +16,11 @@ git clone https://github.com/kinkinkinxd/YourFitnessPal.git
 ```
 cd YourFitnessPal
 ```
-3. Generate new virtual enviroment. (For Window OS)
+3. Install virtualenv.
+```
+python -m pip install virtualenv
+```
+4. Generate new virtual enviroment. (For Window OS)
 ```
 virtualenv env
 ```
@@ -23,7 +28,7 @@ virtualenv env
 ```
 virtualenv venv
 ```
-4. Activate virtualenv
+5. Activate virtualenv
 
 go to env directory and then activate it
 
@@ -40,34 +45,34 @@ for MacOs and Linux
 ```
 source venv/bin/activate
 ```
-5. Go out from the env directory
+6. Go out from the env directory
 ```
 (env) C:\user\YourFitnessPal\env>cd..	
 # we should see terminal like below
 (env) C:\user\YourFitnessPal>
 ```
-6. Enter this command to install all require packages.
+7. Enter this command to install all require packages.
 ``` 
 pip install -r requirements.txt 
 ```
-7. Enter this command to migrate the database.
+8. Enter this command to migrate the database.
 ``` 
 python manage.py migrate 
 ```
-8. Enter this command to initiate initial user accounts.
+9. Enter this command to initiate initial user accounts.
 ``` 
 python manage.py loaddata users.json
 ```
-9. Enter this command to start running the server.
+10. Enter this command to start running the server.
 ``` 
 python manage.py runserver 
 ```
-10. Login to the web application using this given demo account.
+11. Login to the web application using this given demo account.
 
 |Username | Password |
 |-------------|:----------:|
 |  sample | hellosample |
-11. Enter this command when you are done with the website
+12. Enter this command when you are done with the website
 
 ```
 deactivate 
