@@ -54,7 +54,21 @@ pip install -r requirements.txt
 ``` 
 python manage.py migrate 
 ```
-8. Enter this command to start running the server.
+8. Enter this command to initiate initial user accounts.
+``` 
+python manage.py loaddata users.json
+```
+9. Enter this command to start running the server.
 ``` 
 python manage.py runserver 
+```
+10. Login to the web application using this given demo account.
+
+|Username | Password |
+|-------------|:----------:|
+|  sample | hellosample |
+11. Enter this command when you are done with the website
+
+```
+deactivate 
 ```
