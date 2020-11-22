@@ -3,18 +3,17 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.contrib import messages
-from .models import Calories,Exercise,Profile
+from .models import Calories, Exercise, Profile
 import requests
-
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
-HEADER ={
-        'Content-Type': 'application/json',  # Set the type of the body sent
-        'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
-        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
-        'x-remote-user-id': '0'  # USe 0 for development according to the docs
-     }
+HEADER = {
+    'Content-Type': 'application/json',  # Set the type of the body sent
+    'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
+    'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
+    'x-remote-user-id': '0'  # USe 0 for development according to the docs
+}
 
 
 def exercise(request):
@@ -171,21 +170,16 @@ def calculate_calories(request):
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
     else:
-        try:
-            cal = res.json()["foods"][0]["nf_calories"]
-            name = res.json()["foods"][0]["food_name"]
-            pic = res.json()["foods"][0]["photo"]["thumb"]
-            size = res.json()["foods"][0]['serving_weight_grams']
-            tol_fat = res.json()["foods"][0]["nf_total_fat"]
-        except KeyError:
-            messages.warning(request, "Result not found")
-            return render(request, 'fitnesspal/calories.html')
-        else:
-            return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size,
-                                                            'fat': tol_fat})
+        cal = res.json()["foods"][0]["nf_calories"]
+        name = res.json()["foods"][0]["food_name"]
+        pic = res.json()["foods"][0]["photo"]["thumb"]
+        size = res.json()["foods"][0]['serving_weight_grams']
+        tol_fat = res.json()["foods"][0]["nf_total_fat"]
+        new_food = Calories.objects.create(calories=cal, food_name=name)
+        return render(request, 'fitnesspal/calories.html',
+                      {'new_food': new_food, 'pic': pic, 'size': size, 'fat': tol_fat})
 
 
-        
 def exercise_calories_burn(request):
     try:
         res = get_exercise_from_nl_query(request.POST["exercise-input"])
@@ -205,17 +199,18 @@ def exercise_calories_burn(request):
             messages.warning(request, "Result not found")
             return render(request, 'fitnesspal/exercise.html')
         else:
-            return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
+            return render(request, 'fitnesspal/exercise.html',
+                          {'cal': cal, 'name': name, 'duration': duration, 'met': met})
 
-        
+
 def add_food_calories(request):
-    food = Calories.objects.filter(food_name = request.POST['add_button']).last()
-    profile = Profile.objects.filter(user = request.user).first()
+    food = Calories.objects.filter(food_name=request.POST['add_button']).last()
+    profile = Profile.objects.filter(user=request.user).first()
     profile.calories_set.add(food)
     return render(request, 'fitnesspal/calories.html')
 
 
 def profile(request):
-    profile = Profile.objects.filter(user = request.user).first()
-    total = Calories.objects.filter(user = profile).all()
-    return render(request, 'fitnesspal/profile.html', {'total':total})
+    profile = Profile.objects.filter(user=request.user).first()
+    total = Calories.objects.filter(user=profile).all()
+    return render(request, 'fitnesspal/profile.html', {'total': total})
