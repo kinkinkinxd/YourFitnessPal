@@ -22,6 +22,7 @@ class Calories(models.Model):
     fats = models.IntegerField(default=0)
     protein = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
+    date = models.DateTimeField('date food added', null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

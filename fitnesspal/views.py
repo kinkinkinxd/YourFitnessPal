@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.contrib import messages
+from django.utils import timezone
+from datetime import date
 from .models import Calories,Exercise,Profile
 import requests
 
@@ -178,7 +180,7 @@ def calculate_calories(request):
             protein = res.json()["foods"][0]["nf_protein"]
             weight = res.json()["foods"][0]['serving_weight_grams']
             pic = res.json()["foods"][0]["photo"]["thumb"]
-            new_food = Calories.objects.create(food_name = name, calories = cal, carbohydrates = carb,  fats = fats, protein = protein, weight = weight)
+            new_food = Calories.objects.create(food_name = name, calories = cal, carbohydrates = carb,  fats = fats, protein = protein, weight = weight, date = timezone.now())
         except KeyError:
             messages.warning(request, "Result not found")
             return render(request, 'fitnesspal/calories.html')
@@ -209,7 +211,8 @@ def add_food_calories(request):
 
 def profile(request):
     profile = Profile.objects.filter(user = request.user).first()
-    total_food = Calories.objects.filter(user = profile).all()
+    today = date.today()
+    total_food = Calories.objects.filter(user = profile , date__year=today.year, date__month=today.month, date__day=today.day).all()
     total_cal = 0
     for food in total_food:
         total_cal += food.calories
