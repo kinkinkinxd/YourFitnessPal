@@ -13,6 +13,7 @@ urlpatterns = [
     path('exercise/', views.exercise, name='exercise'),
     path('exercise/calculate/', views.exercise_calories_burn, name='calculate_exercise'),
     path('profile/', views.profile, name="profile"),
+    path('profile/edit/', views.profile_edit, name="profile_edit"),
     path('calories/add/', views.add_food_calories, name="add_food"),
 ]
 

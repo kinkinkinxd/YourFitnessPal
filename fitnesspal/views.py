@@ -34,6 +34,10 @@ def profile(request):
     return render(request, 'fitnesspal/profile.html')
 
 
+def profile_edit(request):
+    return render(request, 'fitnesspal/profile_edit.html')
+
+
 def is_valid_locale(locale: str) -> bool:
     return locale in ['en_US', 'en_GB', 'de_DE', 'fr_FR', 'es_ES']
 
