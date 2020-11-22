@@ -172,12 +172,17 @@ def calculate_calories(request):
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
     else:
-        cal = res.json()["foods"][0]["nf_calories"]
-        name = res.json()["foods"][0]["food_name"]
-        pic = res.json()["foods"][0]["photo"]["thumb"]
-        size = res.json()["foods"][0]['serving_weight_grams']
-        tol_fat = res.json()["foods"][0]["nf_total_fat"]
-        return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size,
+        try:
+            cal = res.json()["foods"][0]["nf_calories"]
+            name = res.json()["foods"][0]["food_name"]
+            pic = res.json()["foods"][0]["photo"]["thumb"]
+            size = res.json()["foods"][0]['serving_weight_grams']
+            tol_fat = res.json()["foods"][0]["nf_total_fat"]
+        except KeyError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/calories.html')
+        else:
+            return render(request, 'fitnesspal/calories.html', {'cal': cal, 'name': name, 'pic': pic, 'size': size,
                                                             'fat': tol_fat})
 
 
@@ -188,9 +193,17 @@ def exercise_calories_burn(request):
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/exercise.html')
     else:
-        cal = res.json()["exercises"][0]["nf_calories"]
-        name = res.json()["exercises"][0]["name"]
-        duration = res.json()["exercises"][0]["duration_min"]
-        met = res.json()["exercises"][0]["met"]
-        return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
+        try:
+            cal = res.json()["exercises"][0]["nf_calories"]
+            name = res.json()["exercises"][0]["name"]
+            duration = res.json()["exercises"][0]["duration_min"]
+            met = res.json()["exercises"][0]["met"]
+        except IndexError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/exercise.html')
+        except KeyError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/exercise.html')
+        else:
+            return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
 
