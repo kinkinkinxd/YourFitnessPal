@@ -170,13 +170,20 @@ def calculate_calories(request):
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
     else:
-        cal = res.json()["foods"][0]["nf_calories"]
-        name = res.json()["foods"][0]["food_name"]
-        pic = res.json()["foods"][0]["photo"]["thumb"]
-        size = res.json()["foods"][0]['serving_weight_grams']
-        tol_fat = res.json()["foods"][0]["nf_total_fat"]
-        new_food = Calories.objects.create(calories = cal, food_name = name)
-        return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic, 'size': size, 'fat': tol_fat})
+        try :
+            cal = res.json()["foods"][0]["nf_calories"]
+            name = res.json()["foods"][0]["food_name"]
+            carb = res.json()["foods"][0]["nf_total_carbohydrate"]
+            fats = res.json()["foods"][0]["nf_total_fat"]
+            protein = res.json()["foods"][0]["nf_protein"]
+            weight = res.json()["foods"][0]['serving_weight_grams']
+            pic = res.json()["foods"][0]["photo"]["thumb"]
+            new_food = Calories.objects.create(food_name = name, calories = cal, carbohydrates = carb,  fats = fats, protein = protein, weight = weight)
+        except KeyError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/calories.html')
+        else:
+            return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic})
 
         
 def exercise_calories_burn(request):
@@ -202,5 +209,8 @@ def add_food_calories(request):
 
 def profile(request):
     profile = Profile.objects.filter(user = request.user).first()
-    total = Calories.objects.filter(user = profile).all()
-    return render(request, 'fitnesspal/profile.html', {'total':total})
+    total_food = Calories.objects.filter(user = profile).all()
+    total_cal = 0
+    for food in total_food:
+        total_cal += food.calories
+    return render(request, 'fitnesspal/profile.html', {'total_food':total_food, 'total_cal':total_cal})

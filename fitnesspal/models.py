@@ -13,11 +13,15 @@ class Profile(models.Model):
     height = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user
+        return self.user.first_name
 
 class Calories(models.Model):
     food_name = models.CharField(max_length=20)
     calories = models.IntegerField(default=0)
+    carbohydrates = models.IntegerField(default=0)
+    fats = models.IntegerField(default=0)
+    protein = models.IntegerField(default=0)
+    weight = models.IntegerField(default=0)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
