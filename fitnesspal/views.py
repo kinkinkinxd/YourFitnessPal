@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.contrib import messages
-from .models import Exercise
+from .models import Calories,Exercise,Profile
 import requests
+
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
@@ -16,14 +17,8 @@ HEADER ={
      }
 
 
-class ExerciseView(generic.ListView):
-    """Class for exercise views."""
-
-    template_name = 'fitnesspal/exercise.html'
-    context_object_name = 'exercise_list'
-
-    def get_queryset(self):
-        return Exercise.objects.filter().order_by('-calories')
+def exercise(request):
+    return render(request, 'fitnesspal/exercise.html')
 
 
 def index(request):
@@ -32,6 +27,10 @@ def index(request):
 
 def calories(request):
     return render(request, 'fitnesspal/calories.html')
+
+
+def profile(request):
+    return render(request, 'fitnesspal/profile.html')
 
 
 def is_valid_locale(locale: str) -> bool:
@@ -186,6 +185,7 @@ def calculate_calories(request):
                                                             'fat': tol_fat})
 
 
+        
 def exercise_calories_burn(request):
     try:
         res = get_exercise_from_nl_query(request.POST["exercise-input"])
@@ -207,3 +207,15 @@ def exercise_calories_burn(request):
         else:
             return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
 
+        
+def add_food_calories(request):
+    food = Calories.objects.filter(food_name = request.POST['add_button']).last()
+    profile = Profile.objects.filter(user = request.user).first()
+    profile.calories_set.add(food)
+    return render(request, 'fitnesspal/calories.html')
+
+
+def profile(request):
+    profile = Profile.objects.filter(user = request.user).first()
+    total = Calories.objects.filter(user = profile).all()
+    return render(request, 'fitnesspal/profile.html', {'total':total})
