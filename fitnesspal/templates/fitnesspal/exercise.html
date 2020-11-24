@@ -2,38 +2,17 @@
 {% block content %}
     <body>
     <div class="container">
-        <form method="POST">
-            <div class="row justify-content-center">
-                <div class="form-group row">
-                    <div class="col-xs-2">
-                        <label for="weight">Weight: </label>
-                        <input class="form-control" name="weight" placeholder="Weight">
-                    </div>
-                    <div class="col-xs-2">
-                        <label for="height">Height: </label>
-                        <input class="form-control" id="height" placeholder="Height">
-                    </div>
-                    <div class="col-xs-2">
-                        <label for="age">Age: </label>
-                        <input class="form-control" id="age" placeholder="Age">
-                    </div>
-                    <div class="col-xs-2">
-                        <label for="gender">Gender: </label>
-                        <select class="form-control" id="gender">
-                            <option value="">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <form action="{% url 'fitnesspal:calculate_exercise' %}" method='POST'>
                     {% csrf_token %}
+                    <div class="form-group row">
+                        <img class="logo" src="../../static/fitnesspal/images/dumbell.png">
+                        <div class="col-xs-2">
+                            <label for="weight">Weight: </label>
+                            <input class="form-control" name="weight" placeholder="Weight">
+                        </div>
+                    </div>
                     <div class="card-body row no-gutters align-items-center">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
@@ -76,7 +55,7 @@
                         <td>{{ name }}</td>
                         <td>{{ met }}</td>
                         <td>{{ duration }} min</td>
-                        <td>{{ cal }} kcal</td>
+                        <td>{{ cal }} cal</td>
                     </tr>
                     </tbody>
                 </table>

@@ -165,7 +165,7 @@ def get_exercise_from_nl_query(
 
 def calculate_calories(request):
     try:
-        res = get_nutrients_from_nl_query(request.POST["food-input"])
+        res = get_nutrients_from_nl_query(query=request.POST["food-input"])
     except AssertionError:
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
@@ -182,7 +182,14 @@ def calculate_calories(request):
 
 def exercise_calories_burn(request):
     try:
-        res = get_exercise_from_nl_query(request.POST["exercise-input"])
+        if request.POST["weight"] == '':
+            # res = get_exercise_from_nl_query(query=request.POST["exercise-input"])
+            messages.warning(request, "Please input weight")
+            return render(request, 'fitnesspal/exercise.html')
+
+        else:
+            res = get_exercise_from_nl_query(query=request.POST["exercise-input"]
+                                             , weight_kg=request.POST["weight"])
     except AssertionError:
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/exercise.html')
