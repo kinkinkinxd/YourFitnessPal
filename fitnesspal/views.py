@@ -1,3 +1,5 @@
+from time import timezone
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
@@ -5,6 +7,7 @@ from django.views import generic
 from django.contrib import messages
 from .models import Calories, Exercise, Profile
 import requests
+from django.utils import timezone
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
@@ -199,6 +202,8 @@ def exercise_calories_burn(request):
             name = res.json()["exercises"][0]["name"]
             duration = res.json()["exercises"][0]["duration_min"]
             met = res.json()["exercises"][0]["met"]
+            new_exercise = Exercise.objects.create(exercise_name=name, calories=cal,
+                                                   duration=duration, met=met, date=timezone.now())
         except IndexError:
             messages.warning(request, "Result not found")
             return render(request, 'fitnesspal/exercise.html')
@@ -207,7 +212,7 @@ def exercise_calories_burn(request):
             return render(request, 'fitnesspal/exercise.html')
         else:
             return render(request, 'fitnesspal/exercise.html',
-                          {'cal': cal, 'name': name, 'duration': duration, 'met': met})
+                          {'new_exercise': new_exercise})
 
 
 def add_food_calories(request):
@@ -215,6 +220,13 @@ def add_food_calories(request):
     profile = Profile.objects.filter(user=request.user).first()
     profile.calories_set.add(food)
     return render(request, 'fitnesspal/calories.html')
+
+
+def add_exercise(request):
+    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button'])
+    profile = Profile.objects.filter(user=request.user).first()
+    profile.calories_set.add(exercise)
+    return render(request, 'fitnesspal/exercise.html')
 
 
 def profile(request):

@@ -40,7 +40,7 @@
                     {{ msg }}
                 {% endfor %}
             </ul>
-            {% if cal %}
+            {% if new_exercise.calories %}
                 <table class="table table-bordered">
                     <thead class="bg-color text-white">
                     <tr>
@@ -48,14 +48,23 @@
                         <th scope="col">MET</th>
                         <th scope="col">Duration</th>
                         <th scope="col">Calories burn</th>
+                        <th scope="col">Option</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ name }}</td>
-                        <td>{{ met }}</td>
-                        <td>{{ duration }} min</td>
-                        <td>{{ cal }} cal</td>
+                        <td>{{ new_exercise.exercise_name }}</td>
+                        <td>{{ new_exercise.met }}</td>
+                        <td>{{ new_exercise.duration }} min</td>
+                        <td>{{ new_exercise.calories }} cal</td>
+                        <td class="bg-white">
+                            <form action="{% url 'fitnesspal:add_exercise' %}" method="post">
+                            {% csrf_token %}
+                            <button href="{% url 'fitnesspal:add_exercise' %}"
+                                    name = "add_exercise_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_exercise.exercise_name}}">Add
+                            </button>
+                            </form>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
