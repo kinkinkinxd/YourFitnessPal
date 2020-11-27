@@ -223,9 +223,9 @@ def add_food_calories(request):
 
 
 def add_exercise(request):
-    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button'])
+    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).first()
     profile = Profile.objects.filter(user=request.user).first()
-    profile.calories_set.add(exercise)
+    profile.exercise_set.add(exercise)
     return render(request, 'fitnesspal/exercise.html')
 
 
