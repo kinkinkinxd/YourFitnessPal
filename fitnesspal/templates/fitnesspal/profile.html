@@ -1,4 +1,3 @@
-
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
 {% load static %}
@@ -10,11 +9,8 @@
         <div class="row mt-4 mb-4">
             <div class="col-lg-5 card card-body">
             <div class="app-title">
-
-                <h1 class="text-center profile-text mt-2">Name: {{ request.user }} </h1>
-
+                <h1 class="text-center profile-text mt-2">Name: {{ request.user.first_name}} </h1>
             </div>
-
         </div>
 
 
@@ -31,22 +27,23 @@
                     <th scope="col">Carbohydrates</th>
                     <th scope="col">Fats</th>
                     <th scope="col">Proteins</th>
+                    <th scope="col">Weight</th>
                 </tr>
             </thead>
             <tbody>
-                {% for food in food_items %}
+                {% for food in total_food %}
                 <tr>
-                    <td>{{ food.name }}</td>
-                    <td>{{ food.calorie }}</td>
-                    <td>{{ food.quantity }}</td>
-                    <td><a class="btn btn-sm btn-info" href="{% url 'update_food' food.id %}">Update</a></td>
-                    <td><a class="btn btn-sm " href="{% url 'delete_food' food.id %}">Delete</a></td>
-
-
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.calories }} cal</td>
+                    <td>{{ food.carbohydrates }}</td>
+                    <td>{{ food.fats }}</td>
+                    <td>{{ food.protein }}</td>
+                    <td>{{ food.weight }} g</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <p>Total cal : {{total_cal}}</p>
     </div>
 </div>
 {% endblock content %}
