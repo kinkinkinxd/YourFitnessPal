@@ -33,10 +33,6 @@ def calories(request):
     return render(request, 'fitnesspal/calories.html')
 
 
-def profile(request):
-    return render(request, 'fitnesspal/profile.html')
-
-
 def profile_edit(request):
     return render(request, 'fitnesspal/profile_edit.html')
 
