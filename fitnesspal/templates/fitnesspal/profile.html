@@ -13,7 +13,6 @@
             </div>
         </div>
 
-
      </div>
 
     <h1 class="text-center headline">Added Food Items</h1>
@@ -43,7 +42,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <p>Total cal : {{total_cal}}</p>
         <table class="table table-bordered text-center">
             <thead class="thead-dark">
                 <tr>
@@ -54,14 +52,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for exercise in total_food %}
+                {% for exercise in total_exercise %}
                 <tr>
-                    <td>{{ food.food_name }}</td>
-                    <td>{{ food.calories }} cal</td>
-                    <td>{{ food.carbohydrates }}</td>
-                    <td>{{ food.fats }}</td>
-                    <td>{{ food.protein }}</td>
-                    <td>{{ food.weight }} g</td>
+                    <td>{{ exercise.exercise_name }}</td>
+                    <td>{{ exercise.calories }} cal</td>
+                    <td>{{ exercise.duration }}</td>
+                    <td>{{ exercise.met }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

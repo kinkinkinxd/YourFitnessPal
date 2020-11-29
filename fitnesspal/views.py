@@ -251,7 +251,9 @@ def profile(request):
         total_cal -= food.calories
     for exercises in total_exercise:
         total_cal += exercises.calories
-    return render(request, 'fitnesspal/profile.html', {'total_food':total_food, 'total_cal':total_cal})
+    return render(request, 'fitnesspal/profile.html', {'total_food': total_food, 'total_cal': total_cal,
+                                                       'total_exercise': total_exercise})
+
 
 def profile_edit(request):
 
