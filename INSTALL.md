@@ -5,6 +5,7 @@
 | Django | 3.1 or higher | A Python-based free and open-source web framework. |
 | Requests | 2.24.0 or higher | A module that allows you to send HTTP requests using Python. |
 | Django-environ | - | Allows you to utilize 12factor inspired environment variables to configure your Django application. |
+| django-crispy-forms | - |  provides you with a  filter and tag that will let you control the rendering behavior of your Django forms. |
 
 * Note that for Linux/MacOS the commands are usually python3 and pip3 instead of python and pip respectively.
 
