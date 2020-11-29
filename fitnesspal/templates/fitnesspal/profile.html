@@ -44,6 +44,28 @@
             </tbody>
         </table>
         <p>Total cal : {{total_cal}}</p>
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Exercise Name</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Durations</th>
+                    <th scope="col">MET</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in total_food %}
+                <tr>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.calories }} cal</td>
+                    <td>{{ food.carbohydrates }}</td>
+                    <td>{{ food.fats }}</td>
+                    <td>{{ food.protein }}</td>
+                    <td>{{ food.weight }} g</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock content %}

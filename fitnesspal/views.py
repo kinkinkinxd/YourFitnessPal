@@ -21,6 +21,7 @@ HEADER = {
     'x-remote-user-id': '0'  # USe 0 for development according to the docs
 }
 
+
 def exercise(request):
     return render(request, 'fitnesspal/exercise.html')
 
@@ -238,11 +239,16 @@ def add_exercise(request):
 
 
 def profile(request):
-    profile = Profile.objects.filter(user = request.user).first()
+    profile = Profile.objects.filter(user=request.user).first()
     today = date.today()
-    total_food = Calories.objects.filter(user = profile , date__year=today.year, date__month=today.month, date__day=today.day).all()
+    total_food = Calories.objects.filter(user=profile, date__year=today.year, date__month=today.month,
+                                         date__day=today.day).all()
+    total_exercise = Exercise.objects.filter(user=profile, date__year=today.year, date__month=today.month,
+                                             date__day=today.day).all()
     total_cal = 0
     for food in total_food:
-        total_cal += food.calories
+        total_cal -= food.calories
+    for exercises in total_exercise:
+        total_cal += exercises.calories
     return render(request, 'fitnesspal/profile.html', {'total_food':total_food, 'total_cal':total_cal})
 
