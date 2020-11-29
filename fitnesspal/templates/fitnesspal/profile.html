@@ -9,15 +9,33 @@
         <div class="row mt-4 mb-4">
             <div class="col-lg-5 card card-body">
             <div class="app-title">
-                <h1 class="text-center profile-text mt-2">Name: {{ request.user.first_name}} </h1>
+                <h1 class="text-center profile-text mr-2">Name: {{ request.user.first_name}} </h1>
             </div>
 
         </div>
-
-        <div class="col-lg-7">
-        <h1 class="text-sm-left"> Calories Goal for Today: {{ request.user.goal }} - {{ food_cal }} + {{ exercise_cal }}</h1>
-
+        <div class="col-xs-2 text-sm-left form-labels">
+            <label for="today_cal">Goal for Today:
+                                        <br>{{ request.user.profile.goal }}</label>
+            <label>-</label>
         </div>
+        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+            <label for="today_cal">Food calories:
+                                    <br>{{ food_cal }}</label>
+            <label>+</label>
+        </div>
+        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+            <label for="today_cal">Exercise calories:
+                                    <br>{{ exercise_cal }}</label>
+            <label>=</label>
+        </div>
+        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+            <label for="today_cal">Remaining:
+                                   <br> {{ total_cal }}</label>
+        </div>
+
+
+{#          Calories Goal for Today: {{ request.user.goal }} - {{ food_cal }} + {{ exercise_cal }}</h1>#}
+
      </div>
 
     <h1 class="text-center headline">Added Food Items</h1>

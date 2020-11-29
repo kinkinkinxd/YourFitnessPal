@@ -248,13 +248,14 @@ def profile(request):
                                          date__day=today.day).all()
     total_exercise = Exercise.objects.filter(user=profile, date__year=today.year, date__month=today.month,
                                              date__day=today.day).all()
-    total_cal = 0
+    total_cal = request.user.profile.goal
     exercise_cal = 0
     food_cal = 0
     for food in total_food:
         food_cal += food.calories
     for exercises in total_exercise:
         exercise_cal += exercises.calories
+    total_cal = total_cal - food_cal + exercise_cal
     return render(request, 'fitnesspal/profile.html', {'total_food': total_food, 'total_cal': total_cal,
                                                        'total_exercise': total_exercise, 'food_cal': food_cal,
                                                        'exercise_cal': exercise_cal})
