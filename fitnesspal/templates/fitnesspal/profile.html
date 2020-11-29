@@ -11,8 +11,13 @@
             <div class="app-title">
                 <h1 class="text-center profile-text mt-2">Name: {{ request.user.first_name}} </h1>
             </div>
+
         </div>
 
+        <div class="col-lg-7">
+        <h1 class="text-sm-left"> Calories Goal for Today: {{ request.user.goal }} - {{ food_cal }} + {{ exercise_cal }}</h1>
+
+        </div>
      </div>
 
     <h1 class="text-center headline">Added Food Items</h1>
