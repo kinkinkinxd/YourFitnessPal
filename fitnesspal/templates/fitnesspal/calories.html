@@ -28,20 +28,17 @@
                     </div>
                 </form>
 
-                <ul class="messages text-danger font-weight-bold font-italic display-2">
-                    {% for msg in messages %}
-                        {{ msg }}
-                    {% endfor %}
-                </ul>
 
                 {% if new_food %}
                      <table class="table table-bordered">
                     <thead class="bg-color text-white">
                     <tr>
-                          <th scope="col"></th>
+                        <th scope="col"></th>
                         <th scope="col">Food name</th>
                         <th scope="col">Calories</th>
-                        <th scope="col">Total fat</th>
+                        <th scope="col">Cabohydrates</th>
+                        <th scope="col">Fats</th>
+                        <th scope="col">Proteins</th>
                         <th scope="col">Weight</th>
                         <th scope="col">Option</th>
                     </tr>
@@ -50,9 +47,11 @@
                     <tr>
                         <td><img src="{{ pic }}"></td>
                         <td>{{ new_food.food_name }}</td>
-                        <td>{{ new_food.calories }}</td>
-                        <td>{{ fat }}</td>
-                        <td>{{ size }} g</td>
+                        <td>{{ new_food.calories }} cal</td>
+                        <td>{{ new_food.carbohydrates }}</td>
+                        <td>{{ new_food.fats }}</td>
+                        <td>{{ new_food.protein }}</td>
+                        <td>{{ new_food.weight }} g</td>
                         <td class="bg-white">
                             <form action="{% url 'fitnesspal:add_food' %}" method="post">
                             {% csrf_token %}

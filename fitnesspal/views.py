@@ -1,20 +1,27 @@
+from time import timezone
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.contrib import messages
+from django.utils import timezone
+from datetime import date
 from .models import Calories,Exercise,Profile
-import requests
+from .forms import UserUpdateForm, ProfileUpdateForm
 
+import requests
+from django.utils import timezone
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
-HEADER ={
-        'Content-Type': 'application/json',  # Set the type of the body sent
-        'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
-        'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
-        'x-remote-user-id': '0'  # USe 0 for development according to the docs
-     }
+HEADER = {
+    'Content-Type': 'application/json',  # Set the type of the body sent
+    'x-app-id': "73ada124",  # Your Nutritionix Applicatoin ID
+    'x-app-key': "679449fb041e2ca7f0fdfc02dc121d9a",  # Your Nutritionix Application Key
+    'x-remote-user-id': '0'  # USe 0 for development according to the docs
+}
+
 
 def exercise(request):
     return render(request, 'fitnesspal/exercise.html')
@@ -28,8 +35,8 @@ def calories(request):
     return render(request, 'fitnesspal/calories.html')
 
 
-def profile(request):
-    return render(request, 'fitnesspal/profile.html')
+# def profile_edit(request):
+#     return render(request, 'fitnesspal/profile_edit.html')
 
 
 def is_valid_locale(locale: str) -> bool:
@@ -165,42 +172,111 @@ def get_exercise_from_nl_query(
 
 def calculate_calories(request):
     try:
-        res = get_nutrients_from_nl_query(request.POST["food-input"])
+        res = get_nutrients_from_nl_query(query=request.POST["food-input"])
     except AssertionError:
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
     else:
-        cal = res.json()["foods"][0]["nf_calories"]
-        name = res.json()["foods"][0]["food_name"]
-        pic = res.json()["foods"][0]["photo"]["thumb"]
-        size = res.json()["foods"][0]['serving_weight_grams']
-        tol_fat = res.json()["foods"][0]["nf_total_fat"]
-        new_food = Calories.objects.create(calories = cal, food_name = name)
-        return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic, 'size': size, 'fat': tol_fat})
+        try :
+            cal = res.json()["foods"][0]["nf_calories"]
+            name = res.json()["foods"][0]["food_name"]
+            carb = res.json()["foods"][0]["nf_total_carbohydrate"]
+            fats = res.json()["foods"][0]["nf_total_fat"]
+            protein = res.json()["foods"][0]["nf_protein"]
+            weight = res.json()["foods"][0]['serving_weight_grams']
+            pic = res.json()["foods"][0]["photo"]["thumb"]
+            new_food = Calories.objects.create(food_name = name, calories = cal, carbohydrates = carb,  fats = fats, protein = protein, weight = weight, date = timezone.now())
+        except KeyError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/calories.html')
+        else:
+            return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic})
 
-        
+
 def exercise_calories_burn(request):
     try:
-        res = get_exercise_from_nl_query(request.POST["exercise-input"])
+        if request.POST["weight"] == '':
+            # res = get_exercise_from_nl_query(query=request.POST["exercise-input"])
+            messages.warning(request, "Please input weight")
+            return render(request, 'fitnesspal/exercise.html')
+
+        else:
+            res = get_exercise_from_nl_query(query=request.POST["exercise-input"]
+                                             , weight_kg=request.POST["weight"])
     except AssertionError:
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/exercise.html')
     else:
-        cal = res.json()["exercises"][0]["nf_calories"]
-        name = res.json()["exercises"][0]["name"]
-        duration = res.json()["exercises"][0]["duration_min"]
-        met = res.json()["exercises"][0]["met"]
-        return render(request, 'fitnesspal/exercise.html', {'cal': cal, 'name': name, 'duration': duration, 'met': met})
+        try:
+            cal = res.json()["exercises"][0]["nf_calories"]
+            name = res.json()["exercises"][0]["name"]
+            duration = res.json()["exercises"][0]["duration_min"]
+            met = res.json()["exercises"][0]["met"]
+            new_exercise = Exercise.objects.create(exercise_name=name, calories=cal,
+                                                   duration=duration, met=met, date=timezone.now())
+        except IndexError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/exercise.html')
+        except KeyError:
+            messages.warning(request, "Result not found")
+            return render(request, 'fitnesspal/exercise.html')
+        else:
+            return render(request, 'fitnesspal/exercise.html',
+                          {'new_exercise': new_exercise})
 
-        
+
 def add_food_calories(request):
-    food = Calories.objects.filter(food_name = request.POST['add_button']).last()
-    profile = Profile.objects.filter(user = request.user).first()
+    food = Calories.objects.filter(food_name=request.POST['add_button']).last()
+    profile = Profile.objects.filter(user=request.user).first()
     profile.calories_set.add(food)
+    messages.success(request, f'This food has been added to your account!')
     return render(request, 'fitnesspal/calories.html')
 
 
+def add_exercise(request):
+    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).last()
+    profile = Profile.objects.filter(user=request.user).first()
+    profile.exercise_set.add(exercise)
+    messages.success(request, f'This exercise has been added to your account!')
+    return render(request, 'fitnesspal/exercise.html')
+
+
 def profile(request):
-    profile = Profile.objects.filter(user = request.user).first()
-    total = Calories.objects.filter(user = profile).all()
-    return render(request, 'fitnesspal/profile.html', {'total':total})
+    profile = Profile.objects.filter(user=request.user).first()
+    today = date.today()
+    total_food = Calories.objects.filter(user=profile, date__year=today.year, date__month=today.month,
+                                         date__day=today.day).all()
+    total_exercise = Exercise.objects.filter(user=profile, date__year=today.year, date__month=today.month,
+                                             date__day=today.day).all()
+    total_cal = request.user.profile.goal
+    exercise_cal = 0
+    food_cal = 0
+    for food in total_food:
+        food_cal += food.calories
+    for exercises in total_exercise:
+        exercise_cal += exercises.calories
+    total_cal = total_cal - food_cal + exercise_cal
+    return render(request, 'fitnesspal/profile.html', {'total_food': total_food, 'total_cal': total_cal,
+                                                       'total_exercise': total_exercise, 'food_cal': food_cal,
+                                                       'exercise_cal': exercise_cal})
+
+
+def profile_edit(request):
+
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form,'p_form': p_form})
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'fitnesspal/profile_edit.html', context)

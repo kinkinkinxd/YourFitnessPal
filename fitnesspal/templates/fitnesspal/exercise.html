@@ -2,11 +2,17 @@
 {% block content %}
     <body>
     <div class="container">
-        <br/>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <form action="{% url 'fitnesspal:calculate_exercise' %}" method='POST'>
                     {% csrf_token %}
+                    <div class="form-group row">
+                        <img class="logo" src="../../static/fitnesspal/images/dumbell.png">
+                        <div class="col-xs-2">
+                            <label for="weight">Weight: </label>
+                            <input class="form-control" name="weight" placeholder="Weight">
+                        </div>
+                    </div>
                     <div class="card-body row no-gutters align-items-center">
                         <div class="col-auto">
                             <i class="fas fa-search h4 text-body"></i>
@@ -27,38 +33,43 @@
                         <!--end of col-->
                     </div>
                 </form>
+            </div>
 
-                <ul class="messages text-danger font-weight-bold font-italic display-2">
-                    {% for msg in messages %}
-                        {{ msg }}
-                    {% endfor %}
-                </ul>
-                {% if cal %}
-                    <table class="table table-bordered">
+            {% if new_exercise.calories %}
+                <table class="table table-bordered">
                     <thead class="bg-color text-white">
                     <tr>
                         <th scope="col">Exercise name</th>
                         <th scope="col">MET</th>
                         <th scope="col">Duration</th>
-                        <th scope="col">Calories burn</th>
+                        <th scope="col">Calories burned</th>
+                        <th scope="col">Option</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ name }}</td>
-                        <td>{{ met }}</td>
-                        <td>{{ duration }} min</td>
-                        <td>{{ cal }} kcal</td>
+                        <td>{{ new_exercise.exercise_name }}</td>
+                        <td>{{ new_exercise.met }}</td>
+                        <td>{{ new_exercise.duration }} min</td>
+                        <td>{{ new_exercise.calories }} cal</td>
+                        <td class="bg-white">
+                            <form action="{% url 'fitnesspal:add_exercise' %}" method="post">
+                            {% csrf_token %}
+                            <button href="{% url 'fitnesspal:add_exercise' %}"
+                                    name = "add_exercise_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_exercise.exercise_name}}">Add
+                            </button>
+                            </form>
+                        </td>
                     </tr>
                     </tbody>
-                    </table>
-                {% endif %}
                 </table>
-                </div>
-
-            </div>
-            <!--end of col-->
+            {% endif %}
+            </table>
         </div>
+
+    </div>
+    <!--end of col-->
+    </div>
     </div>
     </body>
 {% endblock %}
