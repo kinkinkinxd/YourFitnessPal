@@ -229,13 +229,15 @@ def add_food_calories(request):
     food = Calories.objects.filter(food_name=request.POST['add_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
     profile.calories_set.add(food)
+    messages.success(request, f'This food has been added to your account!')
     return render(request, 'fitnesspal/calories.html')
 
 
 def add_exercise(request):
-    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).first()
+    exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
     profile.exercise_set.add(exercise)
+    messages.success(request, f'This exercise has been added to your account!')
     return render(request, 'fitnesspal/exercise.html')
 
 
