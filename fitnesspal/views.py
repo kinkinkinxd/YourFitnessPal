@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.utils import timezone
 from datetime import date
 from .models import Calories,Exercise,Profile
+from .forms import UserUpdateForm, ProfileUpdateForm
 
 import requests
 from django.utils import timezone
@@ -34,8 +35,8 @@ def calories(request):
     return render(request, 'fitnesspal/calories.html')
 
 
-def profile_edit(request):
-    return render(request, 'fitnesspal/profile_edit.html')
+# def profile_edit(request):
+#     return render(request, 'fitnesspal/profile_edit.html')
 
 
 def is_valid_locale(locale: str) -> bool:
@@ -252,3 +253,22 @@ def profile(request):
         total_cal += exercises.calories
     return render(request, 'fitnesspal/profile.html', {'total_food':total_food, 'total_cal':total_cal})
 
+def profile_edit(request):
+
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form,'p_form': p_form})
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'fitnesspal/profile_edit.html', context)

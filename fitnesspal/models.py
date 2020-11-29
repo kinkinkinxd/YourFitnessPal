@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    goal = models.IntegerField(default=0) 
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=100, default='')
     weight = models.IntegerField(default=0)
