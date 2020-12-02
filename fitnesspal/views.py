@@ -261,7 +261,7 @@ def profile(request):
                                                        'total_exercise': total_exercise, 'food_cal': food_cal,
                                                        'exercise_cal': exercise_cal})
 
-@login_required
+@login_required 
 def profile_edit(request):
 
     if request.method == 'POST':
