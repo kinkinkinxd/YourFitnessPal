@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,14 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rdymj7s@okjgkpu-ob*sezbvhyu2&0!tvz9s=jzjv#paogxu-j'
+env = environ.Env()
+env.read_env()
+SECRET_KEY = env('SECRET_KEY', default='secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['your-fitnesspal.herokuapp.com']
 
 # Application definition
 
@@ -124,3 +127,7 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'fitnesspal:index'
 LOGOUT_REDIRECT_URL = 'fitnesspal:index'
+
+if '/app' in os.environ['HOME']:
+    import django_heroku
+    django_heroku.settings(locals())
