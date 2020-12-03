@@ -9,6 +9,7 @@ from django.utils import timezone
 from datetime import date
 from .models import Calories, Exercise, Profile
 from .forms import UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.decorators import login_required
 
 import requests
 from django.utils import timezone
@@ -224,7 +225,7 @@ def exercise_calories_burn(request):
             return render(request, 'fitnesspal/exercise.html',
                           {'new_exercise': new_exercise})
 
-
+@login_required
 def add_food_calories(request):
     food = Calories.objects.filter(food_name=request.POST['add_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
@@ -232,7 +233,7 @@ def add_food_calories(request):
     messages.success(request, f'This food has been added to your account!')
     return render(request, 'fitnesspal/calories.html')
 
-
+@login_required
 def add_exercise(request):
     exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
@@ -240,7 +241,7 @@ def add_exercise(request):
     messages.success(request, f'This exercise has been added to your account!')
     return render(request, 'fitnesspal/exercise.html')
 
-
+@login_required
 def profile(request):
     profile = Profile.objects.filter(user=request.user).first()
     today = date.today()
@@ -260,7 +261,7 @@ def profile(request):
                                                        'total_exercise': total_exercise, 'food_cal': food_cal,
                                                        'exercise_cal': exercise_cal})
 
-
+@login_required 
 def profile_edit(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
