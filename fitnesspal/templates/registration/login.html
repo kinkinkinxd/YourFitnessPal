@@ -1,61 +1,55 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
-{% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'fitnesspal/login_style.css' %}">
-</head>
-<title>YourFitnessPal Login Page</title>
-<body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="../../static/fitnesspal/images/logo.png" class="brand_logo" alt="Logo">
-					</div>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form method = "POST">
-						{% csrf_token %}
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							{{ form.username.errors }}
-    						{{ form.username }}
-							<!-- <input type="text" name="" for="{{ form.username }}" class="form-control input_user" value="" placeholder="username"> -->
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>	
-							{{ form.password.errors }}
-    						{{ form.password }}
-							<!-- <input type="password" name="" for="{{ form.password.id_for_label }}" class="form-control input_pass" value="" placeholder="password"> -->
-						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
-							</div>
-						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="submit" name="button" class="btn login_btn">Login</button>
-				   </div>
-					</form>
-				</div>
-		
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'signup' %} "class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="{% url 'password_reset' %}">Forgot your password?</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'fitnesspal/login_style.css' %}">
+    </head>
+    <title>YourFitnessPal Login Page</title>
+    <body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="../../static/fitnesspal/images/logo.png" class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            {{ form.username.errors }}
+                            {{ form.username }}
+                            <!-- <input type="text" name="" for="{{ form.username }}" class="form-control input_user" value="" placeholder="username"> -->
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            {{ form.password.errors }}
+                            {{ form.password }}
+                            <!-- <input type="password" name="" for="{{ form.password.id_for_label }}" class="form-control input_pass" value="" placeholder="password"> -->
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account? <a href="{% url 'signup' %}" class="ml-2">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center links">
+                        <a href="{% url 'password_reset' %}">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
 
 {% endblock %}
