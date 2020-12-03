@@ -7,7 +7,7 @@ from django.views import generic
 from django.contrib import messages
 from django.utils import timezone
 from datetime import date
-from .models import Calories,Exercise,Profile
+from .models import Calories, Exercise, Profile
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
@@ -25,19 +25,18 @@ HEADER = {
 
 
 def exercise(request):
+    """Exercise views."""
     return render(request, 'fitnesspal/exercise.html')
 
 
 def index(request):
+    """Index views."""
     return render(request, 'fitnesspal/index.html')
 
 
 def calories(request):
+    """Calories views."""
     return render(request, 'fitnesspal/calories.html')
-
-
-# def profile_edit(request):
-#     return render(request, 'fitnesspal/profile_edit.html')
 
 
 def is_valid_locale(locale: str) -> bool:
@@ -178,7 +177,7 @@ def calculate_calories(request):
         messages.warning(request, "Result not found")
         return render(request, 'fitnesspal/calories.html')
     else:
-        try :
+        try:
             cal = res.json()["foods"][0]["nf_calories"]
             name = res.json()["foods"][0]["food_name"]
             carb = res.json()["foods"][0]["nf_total_carbohydrate"]
@@ -186,12 +185,13 @@ def calculate_calories(request):
             protein = res.json()["foods"][0]["nf_protein"]
             weight = res.json()["foods"][0]['serving_weight_grams']
             pic = res.json()["foods"][0]["photo"]["thumb"]
-            new_food = Calories.objects.create(food_name = name, calories = cal, carbohydrates = carb,  fats = fats, protein = protein, weight = weight, date = timezone.now())
+            new_food = Calories.objects.create(food_name=name, calories=cal, carbohydrates=carb, fats=fats,
+                                               protein=protein, weight=weight, date=timezone.now())
         except KeyError:
             messages.warning(request, "Result not found")
             return render(request, 'fitnesspal/calories.html')
         else:
-            return render(request, 'fitnesspal/calories.html', {'new_food' : new_food, 'pic': pic})
+            return render(request, 'fitnesspal/calories.html', {'new_food': new_food, 'pic': pic})
 
 
 def exercise_calories_burn(request):
@@ -263,7 +263,6 @@ def profile(request):
 
 @login_required 
 def profile_edit(request):
-
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
@@ -271,7 +270,7 @@ def profile_edit(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form,'p_form': p_form})
+            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form, 'p_form': p_form})
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
