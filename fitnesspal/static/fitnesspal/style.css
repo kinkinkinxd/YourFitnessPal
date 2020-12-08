@@ -1,3 +1,4 @@
+@charset "UTF-8";
 img {
     display: block;
     max-width: 100%;
@@ -27,7 +28,3 @@ img {
     text-align: center;
     color: white;
 }
-
-
-
-

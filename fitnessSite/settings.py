@@ -26,9 +26,9 @@ env.read_env()
 SECRET_KEY = env('SECRET_KEY', default='secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['your-fitnesspal.herokuapp.com']
+ALLOWED_HOSTS = ['your-fitnesspal.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -128,6 +128,6 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'fitnesspal:index'
 LOGOUT_REDIRECT_URL = 'fitnesspal:index'
 
-if '/app' in os.environ['HOME']:
-    import django_heroku
-    django_heroku.settings(locals())
+# if '/app' in os.environ['HOME']:
+#     import django_heroku
+#     django_heroku.settings(locals())
