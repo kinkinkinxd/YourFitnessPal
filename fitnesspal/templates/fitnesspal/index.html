@@ -1,14 +1,121 @@
 {% extends 'fitnesspal/base.html' %}
+{% load static %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'fitnesspal/developer_style.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/slide_area.css' %}">
+</head>
 <body>
-    <main role="main" class="container">
-        <div class="about-us bg-color mt-3">
-            <h1>About Us</h1>
+    <div class="slider_area">
+        <div class="slider_active owl-carousel">
+            <div class="single_slider  d-flex align-items-center slider_bg_2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="slider_text ">
+                                <h3> <span>YourFitnessPal</span> <br>
+                                    Let We Help You </h3>
+                                <p>Take control of your goals. Track calories, break down ingredients, <br> and log activities with YourFitnessPal.</p>
+                                <a href="{% url 'fitnesspal:profile' %}" class="boxed-btn3">Try It Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service_area">
+        <div class="container p-0">
+            <div class="row no-gutters">
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-electrocardiogram"></i>
+                        </div>
+                        <h3>Hospitality</h3>
+                        <p>Clinical excellence must be the priority for any health care service provider.</p>
+                        <a href="#" class="boxed-btn3-white">Apply For a Bed</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-emergency-call"></i>
+                        </div>
+                        <h3>Emergency Care</h3>
+                        <p>Clinical excellence must be the priority for any health care service provider.</p>
+                        <a href="#" class="boxed-btn3-white">+10 672 356 3567</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-first-aid-kit"></i>
+                        </div>
+                        <h3>Chamber Service</h3>
+                        <p>Clinical excellence must be the priority for any health care service provider.</p>
+                        <a href="#" class="boxed-btn3-white">Make an Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Developer_area">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-xl-12 ">
+                    <div class="doctors_title text-center">
+                        <h3>Developer Team</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container p-0">
+                <div class="row no-gutters">
+                <div class="col-xl-12">
+                    <div class="expert_active owl-carousel">
+                        <div class="single_expert">
+                            <div class="expert_thumb ">
+                                <img src="../../static/fitnesspal/images/Pund.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Panitan Plengkham</h3>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Jean.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Purich Trinorapong</h3>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Auu.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Peerasu Watanasirang</h3>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Kin.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Kittitouch Ingkasompob</h3>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-us bg-color mt-3">
+        <h1>About Us</h1>
             <p class="lead">YourFitnessPal is a diet and fitness community providing you with the tools and support to help you to stay healthy
                 and achieve your weight loss goals.</p>
         </div>
-    </main>
 </body>
 {% endblock %}
-
 

@@ -1,0 +1,90 @@
+.Developer_area {
+	 padding-top: 120px;
+	 padding-bottom: 120px;
+}
+ .Developer_area.doctor_page {
+	 padding-bottom: 80px;
+}
+ .Developer_area .doctors_title h3 {
+	 font-size: 36px;
+	 font-weight: 500;
+	 color: #1f1f1f;
+}
+ .Developer_area .single_expert .expert_thumb {
+	 border-top-left-radius: 5px;
+	 border-top-right-radius: 5px;
+	 overflow: hidden;
+}
+ .Developer_area .single_expert .expert_thumb img {
+     width: 800px;
+    height: 600px;
+    object-fit: cover;
+}
+ .Developer_area .single_expert .experts_name {
+	 background: #f5fbff;
+	 padding-top: 16px;
+	 padding-bottom: 18px;
+}
+ .Developer_area .single_expert .experts_name h3 {
+	 font-size: 20px;
+	 font-weight: 500;
+	 margin-bottom: 1px;
+}
+ .Developer_area .single_expert .experts_name span {
+	 color: #919191;
+	 font-size: 13px;
+}
+ .Developer_area .single_expert:hover .experts_name {
+	 background: #5db2ff;
+}
+ .Developer_area .single_expert:hover .experts_name h3 {
+	 color: #fff;
+}
+ .Developer_area .single_expert:hover .experts_name span {
+	 color: #fff;
+}
+ .Developer_area .owl-carousel .owl-nav div {
+	 background: transparent;
+	 height: 40px;
+	 left: 0px;
+	 text-align: center;
+	 -webkit-transform: translateY(0%);
+	 -ms-transform: translateY(0%);
+	 transform: translateY(0%);
+	 width: 40px;
+	 color: #919191;
+	 background-color: transparent;
+	 font-size: 15px;
+	 line-height: 40px;
+	 border: 1px solid #eee;
+	 left: auto;
+	 left: auto;
+	 top: -100px;
+	 right: 55px;
+}
+ .Developer_area .owl-carousel .owl-nav div.owl-next {
+	 left: auto;
+	 right: 0;
+}
+ .Developer_area .owl-carousel .owl-nav div.owl-next i {
+	 position: relative;
+	 right: 0;
+}
+ .Developer_area .owl-carousel .owl-nav div.owl-prev i {
+	 position: relative;
+	 top: 0px;
+}
+.col-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%
+}
+
+.container {
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
