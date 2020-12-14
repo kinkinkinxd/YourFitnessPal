@@ -21,7 +21,6 @@ class AuthenticationTest(TestCase):
         self.assertEqual(response.status_code, 302)
         response = self.client.get(reverse('fitnesspal:index'))
         self.assertTrue(response.context['user'].is_authenticated)
-        self.assertContains(response, f'Hello {self.user["username"]}')
 
     def test_user_logged_out(self):
         """Test logged out, the user username will be not shown on the index page."""
@@ -29,7 +28,7 @@ class AuthenticationTest(TestCase):
         response = self.client.post(reverse('logout'))
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context['user'].is_authenticated)
-        self.assertNotContains(response, f'Hello {self.user["username"]}')
+
 
 if __name__ == '__main__':
     unittest.main()
