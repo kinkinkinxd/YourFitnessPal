@@ -10,7 +10,9 @@
                         <img class="logo" src="../../static/fitnesspal/images/dumbell.png">
                         <div class="col-xs-2">
                             <label for="weight">Weight: </label>
-                            <input class="form-control" name="weight" value={{ request.user.profile.weight }}>
+
+                            <input class="form-control" name="weight" value="{{ request.user.profile.weight }}">
+
                         </div>
                     </div>
                     <div class="card-body row no-gutters align-items-center">
@@ -53,7 +55,7 @@
                         <td>{{ new_exercise.duration }} min</td>
                         <td>{{ new_exercise.calories }} cal</td>
                         <td class="bg-white">
-                            <form action="{% url 'fitnesspal:add_exercise' %}" method="post">
+                            <form action="{% url 'fitnesspal:add_exercise' %}" method="POST">
                             {% csrf_token %}
                             <button href="{% url 'fitnesspal:add_exercise' %}"
                                     name = "add_exercise_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_exercise.exercise_name}}">Add

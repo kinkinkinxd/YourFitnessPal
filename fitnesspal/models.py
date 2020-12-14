@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    goal = models.IntegerField(default=0) 
+    goal = models.IntegerField(default=2000)
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=100, default='')
     weight = models.IntegerField(default=0)
@@ -20,9 +20,20 @@ class Profile(models.Model):
 
 class Calories(models.Model):
     food_name = models.CharField(max_length=20)
+    unit = models.CharField(max_length=20, default='')
     calories = models.IntegerField(default=0)
+    cholesterol = models.IntegerField(default=0)
+    sodium = models.IntegerField(default=0)
     carbohydrates = models.IntegerField(default=0)
+    diet_fiber = models.IntegerField(default=0)
+    sugar = models.IntegerField(default=0)
     fats = models.IntegerField(default=0)
+    sat_fats = models.IntegerField(default=0)
+    tran_fats = models.IntegerField(default=0)
+    vit_a = models.IntegerField(default=0)
+    vit_c = models.IntegerField(default=0)
+    calcium = models.IntegerField(default=0)
+    iron = models.IntegerField(default=0)
     protein = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
     date = models.DateTimeField('date food added', null=True)
