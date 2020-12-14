@@ -1,11 +1,7 @@
 from time import timezone
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login
-from django.views import generic
+from django.shortcuts import render
 from django.contrib import messages
-from django.utils import timezone
 from datetime import date
 from .models import Calories, Exercise, Profile
 from .forms import UserUpdateForm, ProfileUpdateForm
@@ -69,15 +65,6 @@ def search_nutrients_from_nl_query(
         num_servings: the number of servings this dish yields. The nutrients when this food is logged will be divided by this number.
         aggregate: if present, it combines all the foods into one food object with the food_name equal to the value of this field
         line_delimited: if present, it expects only 1 food per line and will return an array of rules broken if there are any. i.e. 2+ foods on a line, no foods detected on this line, etc
-        use_raw_foods: Allows parsing of uncooked variants.
-        include_subrecipe: if present, will return recipe composition of the requested food (if exists)
-        timezone: timezone in which to parse relative time queries like “yesterday I ate x”
-        consumed_at: ISO 8601 compliant date format. Will overwrite any interpreted time contexts.
-        lat: latitude
-        lng: longitude
-        meal_type: meal type
-        use_branded_foods: toggle interpretation of branded foods
-        locale: locale value for natural food search. Supported values en_US, en_GB, de_DE, fr_FR, es_ES.
 
     Returns:
         Response
@@ -113,18 +100,8 @@ def get_nutrients_from_nl_query(
         query: str,
         num_servings: float = None,
         aggregate: bool = None,
-        line_delimited: bool = None,
-        use_raw_foods: bool = None,
-        include_subrecipe: bool = None,
-        timezone: str = None,
-        consumed_at: str = None,
-        lat: float = None,
-        lng: float = None,
-        meal_type: int = None,
-        use_branded_foods: bool = None,
-        locale: str = None) -> requests.Response:
+        line_delimited: bool = None) -> requests.Response:
     """Returns the nutrients for all foods in the posted query.
-
     Get detailed nutrient breakdown of any natural language text.
 
     Args:
@@ -144,15 +121,6 @@ def get_nutrients_from_nl_query(
         "num_servings": num_servings,
         "aggregate": aggregate,
         "line_delimited": line_delimited,
-        "use_raw_foods": use_raw_foods,
-        "include_subrecipe": include_subrecipe,
-        "timezone": timezone,
-        "consumed_at": consumed_at,
-        "lat": lat,
-        "lng": lng,
-        "meal_type": meal_type,
-        "use_branded_foods": use_branded_foods,
-        "locale": locale,
     }
     # remove values that aren't set
     for k in [k for k, v in body.items() if v is None]:
