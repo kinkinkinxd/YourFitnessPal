@@ -15,15 +15,20 @@
 
         </div><!--/col-3-->
     	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Basic Info</a></li>
-                <li><a data-toggle="tab" href="#messages">Physicality Info</a></li>
-              </ul>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="basic-tab" data-toggle="tab" href="#basic" role="tab" aria-controls="Basic Info" aria-selected="true">Basic Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="physical-tab" data-toggle="tab" href="#physical" role="tab" aria-controls="Physicality Info" aria-selected="false">Physicality Info</a>
+                </li>
+            </ul>
+
 
         <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
           <div class="tab-content">
-            <div class="tab-pane active" id="home">
+            <div class="tab-pane active" id="basic" role="tabpanel">
                 <hr>
                     <fieldset class="form-group">
                         {{ u_form|crispy }}
@@ -31,11 +36,12 @@
                 <hr>
 
              </div><!--/tab-pane-->
-             <div class="tab-pane" id="messages">
+             <div class="tab-pane" id="physical" role="tabpanel">
                <hr>
                     <fieldset class="form-group">
                         {{ p_form|crispy }}
                     </fieldset>
+                </div><!--/tab-pane-->
           </div><!--/tab-content-->
 
           <div class="form-group">
