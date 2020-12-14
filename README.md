@@ -21,8 +21,7 @@ YourFitnessPal web application is a website for help you to have a better life a
 - [Iteration 5 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-5-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/5)
 - [Iteration 6 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-6-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/7)
 
-## Licensing
-Contact our team members to license.
+## Contributors
 * [@jeanyjean](https://github.com/jeanyjean)
 * [@kinkinkinxd](https://github.com/kinkinkinxd)
 * [@BellBoyZz](https://github.com/BellBoyZz)
