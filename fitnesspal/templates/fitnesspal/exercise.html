@@ -1,0 +1,75 @@
+{% extends 'fitnesspal/base.html' %}
+{% block content %}
+    <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form action="{% url 'fitnesspal:calculate_exercise' %}" method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <img class="logo" src="../../static/fitnesspal/images/dumbell.png">
+                        <div class="col-xs-2">
+                            <label for="weight">Weight: </label>
+                            <input class="form-control" name="weight" placeholder={{ request.user.profile.weight }}>
+                        </div>
+                    </div>
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input class="form-control form-control-lg form-control-borderless" name="exercise-input"
+                                   placeholder="Search for exercise calories">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button href="{% url 'fitnesspal:calculate_exercise' %}"
+                                    class="btn btn-lg bg-color2 text-white"
+                                    type="submit">Calculate
+                            </button>
+
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+            </div>
+
+            {% if new_exercise.calories %}
+                <table class="table table-bordered">
+                    <thead class="bg-color text-white">
+                    <tr>
+                        <th scope="col">Exercise name</th>
+                        <th scope="col">MET</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Calories burned</th>
+                        <th scope="col">Option</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ new_exercise.exercise_name }}</td>
+                        <td>{{ new_exercise.met }}</td>
+                        <td>{{ new_exercise.duration }} min</td>
+                        <td>{{ new_exercise.calories }} cal</td>
+                        <td class="bg-white">
+                            <form action="{% url 'fitnesspal:add_exercise' %}" method="post">
+                            {% csrf_token %}
+                            <button href="{% url 'fitnesspal:add_exercise' %}"
+                                    name = "add_exercise_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_exercise.exercise_name}}">Add
+                            </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
+            </table>
+        </div>
+
+    </div>
+    <!--end of col-->
+    </div>
+    </div>
+    </body>
+{% endblock %}

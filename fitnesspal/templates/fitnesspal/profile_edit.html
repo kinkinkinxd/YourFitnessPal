@@ -1,0 +1,51 @@
+{% extends 'fitnesspal/base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+{% load crispy_forms_tags %}
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        {% if user.is_authenticated %}
+  		    <div class="col-sm-10"><h1>{{ user.username }}'s profile</h1></div>
+        {% endif %}
+    	    <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="../../static/fitnesspal/images/logo.png"></a></div>
+    </div>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Basic Info</a></li>
+                <li><a data-toggle="tab" href="#messages">Physicality Info</a></li>
+              </ul>
+
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                    <fieldset class="form-group">
+                        {{ u_form|crispy }}
+                    </fieldset>
+                <hr>
+
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="messages">
+               <hr>
+                    <fieldset class="form-group">
+                        {{ p_form|crispy }}
+                    </fieldset>
+          </div><!--/tab-content-->
+
+          <div class="form-group">
+                <div class="col-xs-12">
+                     <br>
+                       <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                </div>
+         </div>
+        </form>
+        </div><!--/col-9-->
+    </div><!--/row-->
+</div>
+{% endblock %}

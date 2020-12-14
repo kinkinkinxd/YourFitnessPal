@@ -1,0 +1,51 @@
+{% extends 'fitnesspal/base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'fitnesspal/signup_style.css' %}">
+</head>
+<title>YourFitnessPal Signup Page</title>
+<body class="form-v7">
+	<div class="page-content">
+		<div class="form-v7-content">
+			<div class="form-left">
+				<img src="../../static/fitnesspal/images/logo.png" alt="form">
+				<p class="text-1">Sign Up</p>
+			</div>
+			<form class="form-detail" action="#" method="post" id="myform"> 
+					{% csrf_token %}
+					{% for field in form %}
+					<p>
+						{{ field.label_tag }}<br>
+						{{ field }}
+						{% for error in field.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</p>
+					{% endfor %}
+				<!-- <div class="form-row">
+					<label for="username">USERNAME</label>
+					<input type="text" name="username" id="username" class="input-text">
+				</div>
+				<div class="form-row">
+					<label for="your_email">E-MAIL</label>
+					<input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+				</div>
+				<div class="form-row">
+					<label for="password">PASSWORD</label>
+					<input type="password" name="password" id="password" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="comfirm_password">CONFIRM PASSWORD</label>
+					<input type="password" name="comfirm_password" id="comfirm_password" class="input-text" required>
+				</div> -->
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Register">
+					<p>Or<a href="{% url 'login' %}">Sign in</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+{% endblock %}

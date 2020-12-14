@@ -1,0 +1,75 @@
+{% extends 'fitnesspal/base.html' %}
+{% block content %}
+    <body>
+    <div class="container">
+        <br/>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form action="{% url 'fitnesspal:calculate_calories' %}" method='POST'>
+                    {% csrf_token %}
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input class="form-control form-control-lg form-control-borderless" name="food-input"
+                                   placeholder="Search for food calories">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button href="{% url 'fitnesspal:calculate_calories' %}"
+                                    class="btn btn-lg bg-color2 text-white"
+                                    type="submit">Calculate
+                            </button>
+
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+
+
+                {% if new_food %}
+                     <table class="table table-bordered">
+                    <thead class="bg-color text-white">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Food name</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Cabohydrates</th>
+                        <th scope="col">Fats</th>
+                        <th scope="col">Proteins</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Option</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="{{ pic }}"></td>
+                        <td>{{ new_food.food_name }}</td>
+                        <td>{{ new_food.calories }} cal</td>
+                        <td>{{ new_food.carbohydrates }}</td>
+                        <td>{{ new_food.fats }}</td>
+                        <td>{{ new_food.protein }}</td>
+                        <td>{{ new_food.weight }} g</td>
+                        <td class="bg-white">
+                            <form action="{% url 'fitnesspal:add_food' %}" method="post">
+                            {% csrf_token %}
+                            <!-- <input type="submit" name="add_button" value="{{new_food.food_name}}"> -->
+                            <button href="{% url 'fitnesspal:add_food' %}"
+                                    name = "add_button" class="btn btn-lg bg-color2 text-white" type="submit" value="{{new_food.food_name}}">Add
+                            </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endif %}
+                </table>
+                </div>
+
+            </div>
+            <!--end of col-->
+        </div>
+    </div>
+    </body>
+{% endblock %}

@@ -1,13 +1,33 @@
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
-body {
-  background-color: black;
+.bg-base {
+    background-color: gainsboro;
 }
+.bg-color {
+    background-color: #3B7097;
+}
+
+.bg-color2 {
+    background-color: #75BD97;
+}
+
+.bg-color3 {
+    background-color: #A9D09E;
+}
+
+.bg-color4 {
+    background-color: #F6E2BC;
+}
+
 .about-us {
-  padding: 3rem 1.5rem;
-  text-align: center;
-  color: white;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: white;
 }
+
+
+
+
