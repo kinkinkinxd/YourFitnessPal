@@ -42,9 +42,9 @@ class ExerciseViewTest(TestCase):
 
     def test_searching_for_exercise(self):
         """Test if searching an exercise keyword in the input bar will give the data of that exercise."""
-        response = self.client.post(reverse('fitnesspal:calculate_exercise'), {'exercise-input': 'Trampoline', 'weight': 60}, follow=True)  
+        response = self.client.post(reverse('fitnesspal:calculate_exercise'), {'exercise-input': 'trampoline', 'weight': 60}, follow=True)  
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Trampoline")
+        self.assertContains(response,'trampoline')
     
     def test_add_exercise(self):
         response = self.client.post(reverse('fitnesspal:calculate_exercise'), {'exercise-input': 'Trampoline', 'weight': 60}, follow=True)  
