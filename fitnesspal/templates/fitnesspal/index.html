@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{% static 'fitnesspal/slide_area.css' %}">
     <link rel="stylesheet" href="{% static 'fitnesspal/service.css' %}">
     <link rel="stylesheet" href="{% static 'fitnesspal/welcome.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/table_BMI.css' %}">
+
 </head>
 <body>
     <!-- Service_area_start -->
@@ -96,6 +98,79 @@
     </div>
     <!-- welcome_yourfitnesspal_area_end -->
 
+    <!-- BMI_cal_area_start -->
+    <section class="bmi-calculator-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title chart-title">
+                        <span>check your body</span>
+                        <h2>BMI CALCULATOR CHART</h2>
+                    </div>
+                    <div class="chart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bmi</th>
+                                    <th>WEIGHT STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="point">Below 18.5</td>
+                                    <td>Underweight</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">18.5 - 24.9</td>
+                                    <td>Healthy</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">25.0 - 29.9</td>
+                                    <td>Overweight</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">30.0 - and Above</td>
+                                    <td>Obese</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title chart-calculate-title">
+                        <span>check your body</span>
+                        <h2>CALCULATE YOUR BMI</h2>
+                    </div>
+                    <div class="chart-calculate-form">
+                        <p>Body mass index is a value derived from the mass and height of a person.
+                            The BMI is defined as the body mass divided by the square of the body height,
+                            and is universally expressed in units of kg/m², resulting from mass in kilograms and height in metres. </p>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Height / cm">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Weight / kg">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Age">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Sex">
+                                </div>
+                                <div class="col-lg-12">
+                                    <button type="submit">Calculate</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BMI_cal_area_start -->
+
     <!-- Developer_area_start -->
     <div class="Developer_area">
         <div class="container">
@@ -123,7 +198,7 @@
                                 <img src="../../static/fitnesspal/images/Jean.JPG" alt="">
                             </div>
                             <div class="experts_name text-center">
-                                <h3>Purich Trinorapong</h3>
+                                <h3>Purich Trainorapong</h3>
                             </div>
                         </div>
                         <div class="single_expert">
