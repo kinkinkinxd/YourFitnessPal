@@ -1,0 +1,158 @@
+.welcome_yourfitnesspal_area {
+	 padding-top: 120px;
+	 padding-bottom: 220px;
+}
+ .welcome_yourfitnesspal_area .welcome_thumb {
+	 position: relative;
+}
+ .welcome_yourfitnesspal_area .welcome_thumb .thumb_1 {
+	 left: 0;
+}
+ .welcome_yourfitnesspal_area .welcome_thumb .thumb_1 img {
+	 width: 200%;
+}
+ .welcome_yourfitnesspal_area .welcome_thumb .thumb_2 {
+	 position: absolute;
+	 bottom: -94px;
+	 right: -37px;
+}
+ .welcome_yourfitnesspal_area .welcome_thumb .thumb_2 img {
+	 width: auto;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info {
+	 padding-left: 90px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info h2 {
+	 font-size: 18px;
+	 font-weight: 400;
+	 color: #1f1f1f;
+	 margin-bottom: 40px;
+	 position: relative;
+	 z-index: 9;
+	 padding-bottom: 9px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info h2:before {
+	 content: "";
+	 position: absolute;
+	 left: 0;
+	 bottom: 0;
+	 height: 2px;
+	 width: 50px;
+	 background: #5db2ff;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info h3 {
+	 font-weight: 500;
+	 font-size: 36px;
+	 margin-bottom: 10px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info p {
+	 font-size: 16px;
+	 color: #727272;
+	 line-height: 28px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info ul {
+	 margin-bottom: 40px;
+	 margin-top: 25px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info ul li {
+	 color: #727272;
+	 font-size: 16px;
+	 line-height: 28px;
+}
+ .welcome_yourfitnesspal_area .welcome_docmed_info ul li i {
+	 margin-right: 5px;
+	 color: #5db2ff;
+	 font-weight: lighter;
+}
+ .business_expert_area {
+	 padding-bottom: 100px;
+}
+ .business_expert_area .business_info .icon i {
+	 background: #5db2ff;
+	 width: 75px;
+	 height: 75px;
+	 display: inline-block;
+	 color: #fff;
+	 font-size: 35px;
+	 text-align: center;
+	 line-height: 75px;
+	 border-radius: 50%;
+}
+ .business_expert_area .business_info h3 {
+	 font-size: 20px;
+	 font-weight: 500;
+	 color: #1f1f1f;
+	 margin-top: 16px;
+	 margin-bottom: 14px;
+}
+ .business_expert_area .business_info p {
+	 color: #727272;
+	 line-height: 28px;
+	 margin-bottom: 0;
+}
+ .business_expert_area .business_thumb img {
+	 width: 100%;
+}
+ .business_expert_area .business_tabs_area {
+	 background: #f5fbff;
+}
+ .business_expert_area .business_tabs_area .nav .nav-item {
+	 width: 33.3333333334%;
+}
+ .business_expert_area .business_tabs_area .nav .nav-item a {
+	 font-size: 20px;
+	 font-weight: 400;
+	 color: #1f1f1f;
+	 padding: 35px 0px 35px 40px;
+}
+ .business_expert_area .business_tabs_area .nav .nav-item a.active {
+	 background: #fff;
+}
+ .business_expert_area .business_tabs_area #myTab {
+	 display: flex;
+	 align-content: center;
+	 justify-content: space-between;
+}
+ .border_bottom {
+	 border-bottom: 1px solid #e8e8e8;
+	 padding-bottom: 60px;
+	 padding-top: 60px;
+}
+
+.team-section {
+	background: #151515;
+}
+
+.team-section.team-page {
+	padding-bottom: 70px;
+}
+
+.team-section.team-page .ts-item {
+	margin-bottom: 30px;
+}
+
+.team-section.team-page .ts-item:hover .ts_text {
+	bottom: -30px;
+}
+
+.team-section.team-page .ts-item .tt_social {
+	-webkit-transform: skewY(5deg);
+	-ms-transform: skewY(5deg);
+	transform: skewY(5deg);
+	margin-top: 13px;
+}
+
+.team-section.team-page .ts-item .tt_social a {
+	font-size: 14px;
+	color: #c4c4c4;
+	margin-right: 10px;
+}
+
+.team-section.team-page .ts-item .tt_social a:last-child {
+	margin-right: 0;
+}
+
+.team-title .section-title {
+	text-align: left;
+	float: left;
+}
