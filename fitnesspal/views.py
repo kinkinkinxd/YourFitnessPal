@@ -363,13 +363,22 @@ def profile_edit(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form, 'p_form': p_form})
+            try:
+                bmi = request.user.profile.weight / (request.user.profile.height / 100) ** 2
+            except ZeroDivisionError:
+                bmi = 0
+            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form, 'p_form': p_form, 'BMI': bmi})
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    try:
+        bmi = request.user.profile.weight / (request.user.profile.height / 100) ** 2
+    except ZeroDivisionError:
+        bmi = 0
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'BMI': bmi
     }
     return render(request, 'fitnesspal/profile_edit.html', context=context)
