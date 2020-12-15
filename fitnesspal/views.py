@@ -233,8 +233,9 @@ def calculate_calories(request):
                 for key, value in nutrients.items():
                     if food_dict[num]['attr_id'] == value:
                         result_dict[key] = food_dict[num]['value']
-            if 'tran_fats' not in result_dict.keys():
-                result_dict['tran_fats'] = 0
+            for key in nutrients.keys():
+                if key not in result_dict.keys():
+                    result_dict[key] = 0
             name = res.json()["foods"][0]["food_name"]
             weight = res.json()["foods"][0]['serving_weight_grams']
             unit = res.json()["foods"][0]['serving_unit']
