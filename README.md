@@ -1,6 +1,6 @@
 # YourFitnessPal
-[![Build Status](https://travis-ci.com/kinkinkinxd/YourFitnessPal.svg?branch=main)](https://travis-ci.com/kinkinkinxd/YourFitnessPal)
-[![codecov](https://codecov.io/gh/kinkinkinxd/YourFitnessPal/branch/main/graph/badge.svg?token=B3T7C774FS)](undefined)
+[![Build Status](https://travis-ci.com/kinkinkinxd/YourFitnessPal.svg?branch=master)](https://travis-ci.com/kinkinkinxd/YourFitnessPal)
+[![codecov](https://codecov.io/gh/kinkinkinxd/YourFitnessPal/branch/master/graph/badge.svg?token=B3T7C774FS)](undefined)
 
 YourFitnessPal web application is a website for help you to have a better life and stay healthy. Our website will describe some of the famous workouts and exercises. You can search and add any exercise you like and we will give you burned calories, the metabolic rate, and a suggested time for that exercise. But you can also input your preferred exercise time too. The other things are diets, we will tell you how many calories, proteins, carbohydrates, fats, and quantities of that food. Also, you can save your information by creating a user to login to our website.
 
