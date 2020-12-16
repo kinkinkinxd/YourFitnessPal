@@ -1,8 +1,8 @@
+"""Apps class for application configurations."""
 from django.apps import AppConfig
 
 
 class FitnesspalConfig(AppConfig):
-    name = 'fitnesspal'
+    """Class for application configurations."""
 
-    def ready(self):
-        import fitnesspal.signals
+    name = 'fitnesspal'

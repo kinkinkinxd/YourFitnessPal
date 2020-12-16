@@ -1,9 +1,8 @@
 # YourFitnessPal
-[![Build Status](https://travis-ci.com/kinkinkinxd/YourFitnessPal.svg?branch=main)](https://travis-ci.com/kinkinkinxd/YourFitnessPal)
-[![codecov](https://codecov.io/gh/kinkinkinxd/YourFitnessPal/branch/main/graph/badge.svg?token=B3T7C774FS)](undefined)
+[![Build Status](https://travis-ci.com/kinkinkinxd/YourFitnessPal.svg?branch=master)](https://travis-ci.com/kinkinkinxd/YourFitnessPal)
+[![codecov](https://codecov.io/gh/kinkinkinxd/YourFitnessPal/branch/master/graph/badge.svg?token=B3T7C774FS)](undefined)
 
-YourFitnessPal web application is a website for help you to have a better life and stay healthy. We will advise you what to eat
-to do for each day. You can tell us which exercise you like and we will make a schedule for you. The other things are Diets, which foods you should eat or shouldn’t eat, which day is your free day and you can save your information by creating a user to login to our website.
+YourFitnessPal web application is a website for help you to have a better life and stay healthy. Our website will describe some of the famous workouts and exercises. You can search and add any exercise you like and we will give you burned calories, the metabolic rate, and a suggested time for that exercise. But you can also input your preferred exercise time too. The other things are diets, we will tell you how many calories, proteins, carbohydrates, fats, and quantities of that food. Also, you can save your information by creating a user to login to our website.
 
 
 ## Project Documents
@@ -22,9 +21,8 @@ to do for each day. You can tell us which exercise you like and we will make a s
 - [Iteration 5 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-5-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/5)
 - [Iteration 6 Plan](https://github.com/kinkinkinxd/YourFitnessPal/wiki/Iteration-6-Plan) and [Task Board](https://github.com/kinkinkinxd/YourFitnessPal/projects/7)
 
-## Licensing
-Contact our team members to license.
-* @jeanyjean
-* @kinkinkinxd
-* @BellBoyZz
-* @PanitanPlengkham
+## Contributors
+* [@jeanyjean](https://github.com/jeanyjean)
+* [@kinkinkinxd](https://github.com/kinkinkinxd)
+* [@BellBoyZz](https://github.com/BellBoyZz)
+* [@PanitanPlengkham](https://github.com/PanitanPlengkham)
