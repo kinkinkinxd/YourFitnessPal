@@ -29,7 +29,9 @@
                         {% csrf_token %}
                         <p>Serving Size <input class="input-sm w-25" name="food_size" value="{{ food_size }}"> {{ new_food.unit }} (about {{ new_food.weight }}g)</p>
                     </form>
+                    <h5>Press enter when you are done selecting serving size!</h5>
                 </header>
+
                 <table class="performance-facts__table">
                     <thead>
                     <tr>
