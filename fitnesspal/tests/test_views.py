@@ -5,8 +5,6 @@ from django.test import TestCase
 from django.shortcuts import reverse
 from django.utils import timezone
 from fitnesspal.views import search_nutrients_from_nl_query, get_nutrients_from_nl_query
-from fitnesspal.forms import ProfileUpdateForm
-import unittest
 
 
 class CaloriesViewTest(TestCase):
@@ -201,5 +199,3 @@ class ProfileEditViewTest(TestCase):
         self.assertRedirects(response, '/accounts/login/?next=%2Fprofile%2Fedit%2F')
 
 
-if __name__ == '__main__':
-    unittest.main()
