@@ -39,7 +39,7 @@ def exercise(request):
 
 
 def index(request):
-    """Index views."""
+    """Views for home page"""
     return render(request, 'fitnesspal/index.html')
 
 

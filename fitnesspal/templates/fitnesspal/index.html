@@ -1,14 +1,259 @@
 {% extends 'fitnesspal/base.html' %}
+{% load static %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'fitnesspal/developer_style.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/slide_area.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/service.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/welcome.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/table_BMI.css' %}">
+    <link rel="stylesheet" href="{% static 'fitnesspal/monial.css' %}">
+</head>
 <body>
-    <main role="main" class="container">
-        <div class="about-us bg-color mt-3">
-            <h1>About Us</h1>
-            <p class="lead">YourFitnessPal is a diet and fitness community providing you with the tools and support to help you to stay healthy
-                and achieve your weight loss goals.</p>
+    <!-- Service_area_start -->
+    <div class="slider_area">
+        <div class="slider_active owl-carousel">
+            <div class="single_slider  d-flex align-items-center slider_bg_2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="slider_text ">
+                                <h3> <span>YourFitnessPal</span> <br>
+                                    Let We Help You </h3>
+                                <p>Take control of your goals. Track calories, break down ingredients, <br> and log activities with YourFitnessPal.</p>
+                                <a href="{% url 'fitnesspal:profile' %}" class="boxed-btn3">Try It Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
+    <!-- Slider_area_End -->
+
+    <!-- Service_area_start -->
+    <div class="service_area">
+        <div class="container p-0">
+            <div class="row no-gutters">
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h3>Work Out</h3>
+                        <p>Let we help you calculate how much you workout.</p>
+                        <a href="{% url 'fitnesspal:exercise' %}" class="boxed-btn3-white">Workout page</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <span class="flaticon-033-juice"></span>
+                        <h3>Calculate</h3>
+                        <p>Let we help you calculate how much calories have eaten.</p>
+                        <a href="{% url 'fitnesspal:calories' %}" class="boxed-btn3-white">Calories Page</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <span class="flaticon-014-heart-beat"></span>
+                        <h3>Your Profile</h3>
+                        <p>Yor home profile that contain what you eat or what you workout.</p>
+                        <a href="{% url 'fitnesspal:profile' %}" class="boxed-btn3-white">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service_area_End -->
+
+    <!-- welcome_yourfitnesspal_area_start -->
+    <div class="welcome_yourfitnesspal_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="welcome_thumb">
+                        <div class="thumb_1">
+                            <img src="../../static/fitnesspal/images/lift_up.jpg" alt="">
+                        </div>
+                        <div class="thumb_2">
+                            <img src="../../static/fitnesspal/images/turn_around.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="welcome_docmed_info">
+                        <h2>Welcome to YourFitnessPal</h2>
+                        <h3>Best Care For Your <br>
+                                Good Health</h3>
+                        <p>Lose weight with YourFitnessPal the place
+                                It esteems luckily or picture placing drawing. Apartments frequently or motionless on reasonable projecting expression.</p>
+                        <ul>
+                            <li> <i class="flaticon-right"></i> Calculate food calories and tell Nutrient. </li>
+                            <li> <i class="flaticon-right"></i> Calculate workout calories compare with your weight.</li>
+                            <li> <i class="flaticon-right"></i> Your history can collect to your profile and show how much you have eat or workout.</li>
+                        </ul>
+{#                        <a href="#" class="boxed-btn3-white-2">Learn More</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- welcome_yourfitnesspal_area_end -->
+
+    <!-- BMI_cal_area_start -->
+{#    <section class="bmi-calculator-section spad">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-6">#}
+{#                    <div class="section-title chart-title">#}
+{#                        <span>check your body</span>#}
+{#                        <h2>BMI CALCULATOR CHART</h2>#}
+{#                    </div>#}
+{#                    <div class="chart-table">#}
+{#                        <table>#}
+{#                            <thead>#}
+{#                                <tr>#}
+{#                                    <th>Bmi</th>#}
+{#                                    <th>WEIGHT STATUS</th>#}
+{#                                </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                                <tr>#}
+{#                                    <td class="point">Below 18.5</td>#}
+{#                                    <td>Underweight</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td class="point">18.5 - 24.9</td>#}
+{#                                    <td>Healthy</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td class="point">25.0 - 29.9</td>#}
+{#                                    <td>Overweight</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td class="point">30.0 - and Above</td>#}
+{#                                    <td>Obese</td>#}
+{#                                </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-6">#}
+{#                    <div class="section-title chart-calculate-title">#}
+{#                        <span>check your body</span>#}
+{#                        <h2>CALCULATE YOUR BMI</h2>#}
+{#                    </div>#}
+{#                    <div class="chart-calculate-form">#}
+{#                        <p>Body mass index is a value derived from the mass and height of a person.#}
+{#                            The BMI is defined as the body mass divided by the square of the body height,#}
+{#                            and is universally expressed in units of kg/m², resulting from mass in kilograms and height in metres. </p>#}
+{#                        <form action="#">#}
+{#                            <div class="row">#}
+{#                                <div class="col-sm-6">#}
+{#                                    <input type="text" placeholder="Height / cm">#}
+{#                                </div>#}
+{#                                <div class="col-sm-6">#}
+{#                                    <input type="text" placeholder="Weight / kg">#}
+{#                                </div>#}
+{#                                <div class="col-sm-6">#}
+{#                                    <input type="text" placeholder="Age">#}
+{#                                </div>#}
+{#                                <div class="col-sm-6">#}
+{#                                    <input type="text" placeholder="Sex">#}
+{#                                </div>#}
+{#                                <div class="col-lg-12">#}
+{#                                    <button type="submit">Calculate</button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+    <!-- BMI_cal_area_start -->
+
+    <!-- Developer_area_start -->
+
+    <div class="testmonial_area">
+        <div class="testmonial_active owl-carousel">
+            <div class="single-testmonial testmonial_bg_1 overlay2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-10 offset-xl-1">
+                            <div class="testmonial_info text-center">
+{#                                <div class="quote">#}
+{#                                    <i class="flaticon-straight-quotes"></i>#}
+{#                                </div>#}
+                                <p>Making YourFitnessPal is Very challenging for us to do it functional <br>
+                                    I hope people that come to our website will get what they expected
+                                    <br>
+                                    Don't judge a book by it's cover,Everyone healthy in their own ways. </p>
+                                <div class="testmonial_author">
+                                    <h4>Panitan Plengkham</h4>
+                                    <span>(one in the developer team)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Developer_area">
+        <div class="container ">
+            <div class="row no-gutters">
+                <div class="col-xl-12 ">
+                    <div class="doctors_title mb-55">
+                        <h3>Developer Team</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xl-12">
+                    <div class="expert_active owl-carousel">
+                        <div class="single_expert">
+                            <div class="expert_thumb ">
+                                <img src="../../static/fitnesspal/images/Pund.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Panitan Plengkham</h3>
+                                <span>+66 86519 4261</span>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Jean.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Purich Trainorapong</h3>
+                                <span>+66 97276 8886</span>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Auu.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Peerasu Watanasirang</h3>
+                                <span>+66 86565 8765</span>
+                            </div>
+                        </div>
+                        <div class="single_expert">
+                            <div class="expert_thumb">
+                                <img src="../../static/fitnesspal/images/Kin.JPG" alt="">
+                            </div>
+                            <div class="experts_name text-center">
+                                <h3>Kittitouch Ingkasompob</h3>
+                                <span>+66 95762 8185</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Developer_area_End -->
+
 </body>
 {% endblock %}
-
 
