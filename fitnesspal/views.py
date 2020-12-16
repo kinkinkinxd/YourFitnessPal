@@ -1,7 +1,7 @@
 """Views class for database used in this application."""
 from time import timezone
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 import datetime
 from .models import Calories, Exercise, Profile
@@ -307,8 +307,8 @@ def delete_food(request):
     this_food = Calories.objects.filter(food_name=request.POST['delete_food_button']).last()
     this_profile = Profile.objects.filter(user=request.user).first()
     this_profile.calories_set.remove(this_food)
-    messages.success(request, f'This food has been deleted from your account!')
-    return render(request, 'fitnesspal/index.html')
+    messages.success(request, f'The food has been deleted from your account!')
+    return redirect("fitnesspal:profile")
 
 
 @login_required
@@ -317,8 +317,8 @@ def delete_exercise(request):
     this_exercise = Exercise.objects.filter(exercise_name=request.POST['delete_exercise_button']).last()
     this_profile = Profile.objects.filter(user=request.user).first()
     this_profile.exercise_set.remove(this_exercise)
-    messages.success(request, f'This food has been deleted from your account!')
-    return render(request, 'fitnesspal/index.html')
+    messages.success(request, f'The exercise has been deleted from your account!')
+    return redirect("fitnesspal:profile")
 
 
 @login_required
