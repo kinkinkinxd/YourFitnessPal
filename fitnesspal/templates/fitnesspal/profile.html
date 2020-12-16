@@ -61,9 +61,10 @@
                         <td>{{ food.weight }} g</td>
                         <td><form action="{% url 'fitnesspal:delete_food' %}" method="POST">
                                 {% csrf_token %}
+                                <input name="food_name" type="hidden" value="{{food.food_name}}"></input>
                                 <button href="{% url 'fitnesspal:delete_food' %}"
                                         name="delete_food_button" class="btn btn-lg bg-danger text-white" type="submit"
-                                        value="{{ food.food_name }}">Delete
+                                        value="{{ food.calories }}">Delete
                                 </button>
                             </form></td>
                     </tr>
@@ -93,9 +94,10 @@
                         <td>
                             <form action="{% url 'fitnesspal:delete_exercise' %}" method="POST">
                                 {% csrf_token %}
+                                <input name="exercise_name" type="hidden" value="{{exercise.exercise_name}}"></input>
                                 <button href="{% url 'fitnesspal:delete_exercise' %}"
                                         name="delete_exercise_button" class="btn btn-lg bg-danger text-white" type="submit"
-                                        value="{{ exercise.exercise_name }}">Delete
+                                        value="{{ exercise.calories }}">Delete
                                 </button>
                             </form>
                         </td>

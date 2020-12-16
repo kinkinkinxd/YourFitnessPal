@@ -304,9 +304,11 @@ def exercise_calories_burn(request):
 @login_required
 def delete_food(request):
     """Delete food from profile."""
-    this_food = Calories.objects.filter(food_name=request.POST['delete_food_button']).last()
     this_profile = Profile.objects.filter(user=request.user).first()
-    this_profile.calories_set.remove(this_food)
+    this_name = request.POST['food_name']
+    this_food = Calories.objects.filter(food_name = this_name, calories=request.POST['delete_food_button'], user = this_profile).last()
+    this_food.user = None
+    this_food.save()
     messages.success(request, f'The food has been deleted from your account!')
     return redirect("fitnesspal:profile")
 
@@ -314,9 +316,11 @@ def delete_food(request):
 @login_required
 def delete_exercise(request):
     """Delete exercise from profile."""
-    this_exercise = Exercise.objects.filter(exercise_name=request.POST['delete_exercise_button']).last()
     this_profile = Profile.objects.filter(user=request.user).first()
-    this_profile.exercise_set.remove(this_exercise)
+    this_name = request.POST['exercise_name']
+    this_exercise = Exercise.objects.filter(exercise_name = this_name, calories=request.POST['delete_exercise_button'], user = this_profile).last()
+    this_exercise.user = None
+    this_exercise.save()
     messages.success(request, f'The exercise has been deleted from your account!')
     return redirect("fitnesspal:profile")
 
