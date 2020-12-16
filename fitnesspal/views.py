@@ -215,8 +215,6 @@ def search_food(request):
 
 def calculate_calories(request):
     """Calculate food calories for that user."""
-    protein = tol_fats = carb = cal = sugar = diet_fiber = iron = calcium = sodium = vit_a = vit_c = cholesterol = 0
-    tran_fats = sat_fats = 0
     food_size = 1
     food_name = request.GET["parameter"]
     if request.POST.get('food_size') is not None:
@@ -226,58 +224,45 @@ def calculate_calories(request):
         res = get_nutrients_from_nl_query(query=query)
     except AssertionError:
         messages.warning(request, "Result not found")
+        print(1)
         return render(request, 'fitnesspal/calories.html')
     else:
         try:
             food_dict = res.json()["foods"][0]["full_nutrients"]
+            nutrients = {'protein': 203, 'tol_fats': 204, 'carb': 208, 'cal': 208, 'sugar': 269, 'diet_fiber': 291,
+                         'calcium': 301, 'iron': 303, 'sodium': 307, 'vit_a': 320, 'vit_c': 401, 'cholesterol': 601,
+                         'tran_fats': 605, 'sat_fats': 606}
+            result_dict = {}
             for num in range(len(food_dict)):
-                if food_dict[num]['attr_id'] == 203:
-                    protein = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 204:
-                    tol_fats = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 205:
-                    carb = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 208:
-                    cal = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 269:
-                    sugar = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 291:
-                    diet_fiber = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 301:
-                    calcium = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 303:
-                    iron = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 307:
-                    sodium = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 320:
-                    vit_a = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 401:
-                    vit_c = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 601:
-                    cholesterol = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 605:
-                    tran_fats = food_dict[num]['value']
-                if food_dict[num]['attr_id'] == 606:
-                    sat_fats = food_dict[num]['value']
+                for key, value in nutrients.items():
+                    if food_dict[num]['attr_id'] == value:
+                        result_dict[key] = food_dict[num]['value']
+            for key in nutrients.keys():
+                if key not in result_dict.keys():
+                    result_dict[key] = 0
             name = res.json()["foods"][0]["food_name"]
             weight = res.json()["foods"][0]['serving_weight_grams']
             unit = res.json()["foods"][0]['serving_unit']
             pic = res.json()["foods"][0]["photo"]["thumb"]
-            dv_fat = daily_value(tol_fats, 78)
-            dv_sat = daily_value(sat_fats, 20)
-            dv_cholesterol = daily_value(cholesterol, 300)
-            dv_sodium = daily_value(sodium, 2300)
-            dv_carb = daily_value(carb, 275)
-            dv_fiber = daily_value(diet_fiber, 28)
-            iron = daily_value(iron, 18)
-            vit_a = daily_value(vit_a, 900)
-            vit_c = daily_value(vit_c, 500)
-            calcium = daily_value(calcium, 1300)
-            cal_from_fat = tol_fats * 9
-            new_food = Calories.objects.create(food_name=name, calories=cal, carbohydrates=carb, fats=tol_fats,
-                                               unit=unit, sat_fats=sat_fats, tran_fats=tran_fats, sugar=sugar,
-                                               diet_fiber=diet_fiber, iron=iron, sodium=sodium, vit_a=vit_a,
-                                               vit_c=vit_c, cholesterol=cholesterol, protein=protein, calcium=calcium,
+            dv_fat = daily_value(result_dict['tol_fats'], 78)
+            dv_sat = daily_value(result_dict['sat_fats'], 20)
+            dv_cholesterol = daily_value(result_dict['cholesterol'], 300)
+            dv_sodium = daily_value(result_dict['sodium'], 2300)
+            dv_carb = daily_value(result_dict['carb'], 275)
+            dv_fiber = daily_value(result_dict['diet_fiber'], 28)
+            iron = daily_value(result_dict['iron'], 18)
+            vit_a = daily_value(result_dict['vit_a'], 900)
+            vit_c = daily_value(result_dict['vit_c'], 500)
+            calcium = daily_value(result_dict['calcium'], 1300)
+            cal_from_fat = result_dict['tol_fats'] * 9
+            new_food = Calories.objects.create(food_name=name, calories=result_dict['cal'],
+                                               carbohydrates=result_dict['carb'], fats=result_dict['tol_fats'],
+                                               unit=unit, sat_fats=result_dict['sat_fats'],
+                                               tran_fats=result_dict['tran_fats'], sugar=result_dict['sugar'],
+                                               diet_fiber=result_dict['diet_fiber'], iron=iron,
+                                               sodium=result_dict['sodium'], vit_a=vit_a,
+                                               vit_c=vit_c, cholesterol=result_dict['cholesterol'],
+                                               protein=result_dict['protein'], calcium=calcium,
                                                weight=weight, date=timezone.now())
             context = {'new_food': new_food, 'pic': pic, 'cal_from_fat': cal_from_fat, 'dv_fat': dv_fat,
                        'dv_sat': dv_sat, 'dv_cholesterol': dv_cholesterol, 'dv_sodium': dv_sodium, 'dv_carb': dv_carb,
