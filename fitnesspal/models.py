@@ -62,9 +62,3 @@ class Exercise(models.Model):
     def __str__(self):
         """Return the exercise name."""
         return self.exercise_name
-
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-    """For creating profile."""
-    if created:
-        Profile.objects.create(user=instance)
