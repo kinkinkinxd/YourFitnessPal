@@ -1,7 +1,6 @@
 """urls routing for fitnesspal."""
 
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 app_name = 'fitnesspal'
@@ -18,4 +17,3 @@ urlpatterns = [
     path('calories/add/', views.add_food_calories, name="add_food"),
     path('exercise/add/', views.add_exercise, name="add_exercise"),
 ]
-

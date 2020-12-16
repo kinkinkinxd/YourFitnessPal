@@ -1,3 +1,4 @@
+"""Views class for database used in this application."""
 from time import timezone
 
 from django.shortcuts import render
@@ -8,7 +9,6 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 import requests
-from django.utils import timezone
 
 BASE_URL = 'https://trackapi.nutritionix.com'
 
@@ -22,6 +22,7 @@ HEADER = {
 
 def daily_value(quantity, rec_quantity, ):
     """Calculate % daily value for the nutrition.
+
     Args:
         quantity: quantity of value
         rec_quantity: recommend quantity of value
@@ -98,6 +99,7 @@ def get_nutrients_from_nl_query(
         aggregate: bool = None,
         line_delimited: bool = None) -> requests.Response:
     """Returns the nutrients for all foods in the posted query.
+
     Get detailed nutrient breakdown of any natural language text.
 
     Args:
@@ -191,6 +193,7 @@ def get_exercise_from_nl_query(
 
 
 def search_food(request):
+    """Show the food name in the search bar."""
     food_list = []
     try:
         res = search_nutrients_from_nl_query(query=request.POST["food-input"])
@@ -211,6 +214,7 @@ def search_food(request):
 
 
 def calculate_calories(request):
+    """Calculate food calories for that user."""
     food_size = 1
     food_name = request.GET["parameter"]
     if request.POST.get('food_size') is not None:
@@ -271,6 +275,7 @@ def calculate_calories(request):
 
 
 def exercise_calories_burn(request):
+    """Burned exercise calories in the search bar."""
     try:
         res = get_exercise_from_nl_query(query=request.POST["exercise-input"]
                                          , weight_kg=request.POST["weight"])
@@ -298,6 +303,7 @@ def exercise_calories_burn(request):
 
 @login_required
 def add_food_calories(request):
+    """Add food calories to that user."""
     food = Calories.objects.filter(food_name=request.POST['add_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
     profile.calories_set.add(food)
@@ -307,6 +313,7 @@ def add_food_calories(request):
 
 @login_required
 def add_exercise(request):
+    """Add exercise to that user."""
     exercise = Exercise.objects.filter(exercise_name=request.POST['add_exercise_button']).last()
     profile = Profile.objects.filter(user=request.user).first()
     profile.exercise_set.add(exercise)
@@ -316,6 +323,7 @@ def add_exercise(request):
 
 @login_required
 def profile(request):
+    """Summarized calories of your profile."""
     profile = Profile.objects.filter(user=request.user).first()
     today = date.today()
     total_food = Calories.objects.filter(user=profile, date__year=today.year, date__month=today.month,
@@ -337,6 +345,7 @@ def profile(request):
 
 @login_required
 def profile_edit(request):
+    """Show latest info of your profile edit page."""
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
@@ -344,13 +353,22 @@ def profile_edit(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form, 'p_form': p_form})
+            try:
+                bmi = request.user.profile.weight / (request.user.profile.height / 100) ** 2
+            except ZeroDivisionError:
+                bmi = 0
+            return render(request, 'fitnesspal/profile_edit.html', {'u_form': u_form, 'p_form': p_form, 'BMI': bmi})
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    try:
+        bmi = request.user.profile.weight / (request.user.profile.height / 100) ** 2
+    except ZeroDivisionError:
+        bmi = 0
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'BMI': bmi
     }
     return render(request, 'fitnesspal/profile_edit.html', context=context)

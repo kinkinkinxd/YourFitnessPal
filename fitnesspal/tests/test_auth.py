@@ -42,3 +42,4 @@ class AuthenticationTest(TestCase):
         response = self.client.get(reverse('fitnesspal:profile'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=%2Fprofile%2F')
+
