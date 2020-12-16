@@ -1,45 +1,45 @@
 {% extends 'fitnesspal/base.html' %}
 {% block content %}
-{% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'fitnesspal/profile_style.css' %}">
-</head>
-<div class="container-fluid">
-    <h1 class="headline">Your Profile :</h1>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'fitnesspal/profile_style.css' %}">
+    </head>
+    <div class="container-fluid">
+        <h1 class="headline">Your Profile :</h1>
         <div class="row mt-4 mb-4">
             <div class="col-lg-3 card card-body">
-            <div class="app-title">
-                <h1 class="text-center profile-text mr-2">Name: {{ request.user.first_name}} </h1>
+                <div class="app-title">
+                    <h1 class="text-center profile-text mr-2">Name: {{ request.user.first_name }} </h1>
+                </div>
+
+            </div>
+            <div class="col-xs-2 text-sm-left form-labels">
+                <label for="today_cal">Goal for Today:
+                    <br>{{ request.user.profile.goal }}</label>
+                <label>-</label>
+            </div>
+            <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+                <label for="today_cal">Food calories:
+                    <br>{{ food_cal }}</label>
+                <label>+</label>
+            </div>
+            <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+                <label for="today_cal">Exercise calories:
+                    <br>{{ exercise_cal }}</label>
+                <label>=</label>
+            </div>
+            <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
+                <label for="today_cal">Remaining:
+                    <br> {{ total_cal }}</label>
             </div>
 
         </div>
-        <div class="col-xs-2 text-sm-left form-labels">
-            <label for="today_cal">Goal for Today:
-                                        <br>{{ request.user.profile.goal }}</label>
-            <label>-</label>
-        </div>
-        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
-            <label for="today_cal">Food calories:
-                                    <br>{{ food_cal }}</label>
-            <label>+</label>
-        </div>
-        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
-            <label for="today_cal">Exercise calories:
-                                    <br>{{ exercise_cal }}</label>
-            <label>=</label>
-        </div>
-        <div class="col-xs-2 text-sm-left form-labels mr-0 ml-0">
-            <label for="today_cal">Remaining:
-                                   <br> {{ total_cal }}</label>
-        </div>
 
-     </div>
+        <h1 class="text-center headline">Added Food Items</h1>
 
-    <h1 class="text-center headline">Added Food Items</h1>
-
-    <div class="row mt-5">
-      <table class="table table-bordered text-center">
-            <thead class="thead-dark">
+        <div class="row mt-5">
+            <table class="table table-bordered text-center">
+                <thead class="thead-dark">
                 <tr>
                     <th scope="col">Food Name</th>
                     <th scope="col">Calories</th>
@@ -47,46 +47,64 @@
                     <th scope="col">Fats</th>
                     <th scope="col">Proteins</th>
                     <th scope="col">Weight</th>
+                    <th scope="col">Option</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 {% for food in total_food %}
-                <tr>
-                    <td>{{ food.food_name }}</td>
-                    <td>{{ food.calories }} cal</td>
-                    <td>{{ food.carbohydrates }}</td>
-                    <td>{{ food.fats }}</td>
-                    <td>{{ food.protein }}</td>
-                    <td>{{ food.weight }} g</td>
-                </tr>
+                    <tr>
+                        <td>{{ food.food_name }}</td>
+                        <td>{{ food.calories }} cal</td>
+                        <td>{{ food.carbohydrates }}</td>
+                        <td>{{ food.fats }}</td>
+                        <td>{{ food.protein }}</td>
+                        <td>{{ food.weight }} g</td>
+                        <td><form action="{% url 'fitnesspal:delete_food' %}" method="POST">
+                                {% csrf_token %}
+                                <button href="{% url 'fitnesspal:delete_food' %}"
+                                        name="delete_food_button" class="btn btn-lg bg-danger text-white" type="submit"
+                                        value="{{ food.food_name }}">Delete
+                                </button>
+                            </form></td>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <h1 class="text-center headline">Added Exercise Items</h1>
-    <div class="row mt-5">
-        <table class="table table-bordered text-center">
-            <thead class="thead-dark">
+                </tbody>
+            </table>
+        </div>
+        <h1 class="text-center headline">Added Exercise Items</h1>
+        <div class="row mt-5">
+            <table class="table table-bordered text-center">
+                <thead class="thead-dark">
                 <tr>
                     <th scope="col">Exercise Name</th>
                     <th scope="col">Calories</th>
                     <th scope="col">Durations</th>
                     <th scope="col">MET</th>
+                    <th scope="col">Option</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 {% for exercise in total_exercise %}
-                <tr>
-                    <td>{{ exercise.exercise_name }}</td>
-                    <td>{{ exercise.calories }} cal</td>
-                    <td>{{ exercise.duration }}</td>
-                    <td>{{ exercise.met }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ exercise.exercise_name }}</td>
+                        <td>{{ exercise.calories }} cal</td>
+                        <td>{{ exercise.duration }}</td>
+                        <td>{{ exercise.met }}</td>
+                        <td>
+                            <form action="{% url 'fitnesspal:delete_exercise' %}" method="POST">
+                                {% csrf_token %}
+                                <button href="{% url 'fitnesspal:delete_exercise' %}"
+                                        name="delete_exercise_button" class="btn btn-lg bg-danger text-white" type="submit"
+                                        value="{{ exercise.exercise_name }}">Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 {% endblock content %}
 
 

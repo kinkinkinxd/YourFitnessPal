@@ -16,4 +16,6 @@ urlpatterns = [
     path('profile/edit/', views.profile_edit, name="profile_edit"),
     path('calories/add/', views.add_food_calories, name="add_food"),
     path('exercise/add/', views.add_exercise, name="add_exercise"),
+    path('profile/delete/food/', views.delete_food, name='delete_food'),
+    path('profile/delete/exercise/', views.delete_exercise, name='delete_exercise')
 ]
