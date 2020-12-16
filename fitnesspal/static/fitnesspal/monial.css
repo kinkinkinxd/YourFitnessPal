@@ -27,7 +27,7 @@
 }
  .testmonial_area .testmonial_info h4:before {
 	 position: absolute;
-	 background: black;
+	 background: white;
 	 width: 60px;
 	 height: 2px;
 	 content: '';
@@ -42,7 +42,7 @@
 	 left: auto;
 }
  .testmonial_bg_1 {
-	 background-image: url(../../static/fitnesspal/images/Pund.JPG);
+	 background-image: url(../../static/fitnesspal/images/developer.png);
 }
  .testmonial_bg_2 {
 	 background-image: url(../img/testmonial/2.png);
