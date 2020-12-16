@@ -1,6 +1,8 @@
 """Models tests."""
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.urls import reverse
+
 from fitnesspal.models import Calories, Exercise, Profile
 
 
@@ -44,8 +46,9 @@ class ProfileModelTest(TestCase):
             'password': 'password',
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.filter(user=self.username).first()
+        self.profile = Profile.objects.create(user=self.username)
 
     def test_profile_name(self):
         """Test str of profile."""
+        self.client.post(reverse('login'), self.user)
         self.assertEqual(str(self.profile), "tester")

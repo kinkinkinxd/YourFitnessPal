@@ -19,7 +19,7 @@ class CaloriesViewTest(TestCase):
             'password': 'password'
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.filter(user=self.username).first()
+        self.profile = Profile.objects.create(user=self.username)
         self.client.post(reverse('login'), self.user)
         self.food = Calories.objects.create(food_name="chicken")
 
@@ -73,7 +73,7 @@ class ExerciseViewTest(TestCase):
             'password': 'password'
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.filter(user=self.username).first()
+        self.profile = Profile.objects.create(user=self.username)
         self.client.post(reverse('login'), self.user)
         self.exercise = Exercise.objects.create(exercise_name="Trampoline")
 
@@ -106,7 +106,7 @@ class ProfileViewTest(TestCase):
             'password': 'password'
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.filter(user=self.username).first()
+        self.profile = Profile.objects.create(user=self.username)
         self.client.post(reverse('login'), self.user)
         self.exercise = Exercise.objects.create(exercise_name="Trampoline", calories=52, user=self.profile,
                                                 date=timezone.now())
@@ -177,7 +177,7 @@ class ProfileEditViewTest(TestCase):
             'password': 'password'
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.filter(user=self.username).first()
+        self.profile = Profile.objects.create(user=self.username)
         self.client.post(reverse('login'), self.user)
         self.exercise = Exercise.objects.create(exercise_name="Trampoline", calories=52, user=self.profile,
                                                 date=timezone.now())

@@ -3,7 +3,7 @@ from time import timezone
 
 from django.shortcuts import render
 from django.contrib import messages
-from datetime import date
+import datetime
 from .models import Calories, Exercise, Profile
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
@@ -263,7 +263,7 @@ def calculate_calories(request):
                                                sodium=result_dict['sodium'], vit_a=vit_a,
                                                vit_c=vit_c, cholesterol=result_dict['cholesterol'],
                                                protein=result_dict['protein'], calcium=calcium,
-                                               weight=weight, date=timezone.now())
+                                               weight=weight, date=datetime.datetime.now())
             context = {'new_food': new_food, 'pic': pic, 'cal_from_fat': cal_from_fat, 'dv_fat': dv_fat,
                        'dv_sat': dv_sat, 'dv_cholesterol': dv_cholesterol, 'dv_sodium': dv_sodium, 'dv_carb': dv_carb,
                        'dv_fiber': dv_fiber, 'food_name': food_name, 'food_size': food_size}
@@ -289,7 +289,7 @@ def exercise_calories_burn(request):
             duration = res.json()["exercises"][0]["duration_min"]
             met = res.json()["exercises"][0]["met"]
             new_exercise = Exercise.objects.create(exercise_name=name, calories=cal,
-                                                   duration=duration, met=met, date=timezone.now())
+                                                   duration=duration, met=met, date=datetime.datetime.now())
         except IndexError:
             messages.warning(request, "Result not found")
             return render(request, 'fitnesspal/exercise.html')
@@ -325,7 +325,7 @@ def add_exercise(request):
 def profile(request):
     """Summarized calories of your profile."""
     profile = Profile.objects.filter(user=request.user).first()
-    today = date.today()
+    today = datetime.date.today()
     total_food = Calories.objects.filter(user=profile, date__year=today.year, date__month=today.month,
                                          date__day=today.day).all()
     total_exercise = Exercise.objects.filter(user=profile, date__year=today.year, date__month=today.month,
