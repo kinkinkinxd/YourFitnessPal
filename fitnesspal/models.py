@@ -25,7 +25,7 @@ class Calories(models.Model):
     """Class for calories models."""
 
     food_name = models.CharField(max_length=100)
-    unit = models.CharField(max_length=20, default='')
+    unit = models.CharField(max_length=100, default='')
     calories = models.IntegerField(default=0)
     cholesterol = models.IntegerField(default=0)
     sodium = models.IntegerField(default=0)
