@@ -31,5 +31,6 @@ class AuthenticationTest(TestCase):
         self.assertFalse(response.context['user'].is_authenticated)
         self.assertNotContains(response, f'Hello {self.user["username"]}')
 
+
 if __name__ == '__main__':
     unittest.main()
