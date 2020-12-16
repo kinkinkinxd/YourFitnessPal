@@ -113,6 +113,7 @@ class ProfileViewTest(TestCase):
         self.food = Calories.objects.create(food_name="chicken", unit=1, calories=187, user=self.profile,
                                             date=timezone.now())
         self.profile.goal = 2000
+        self.profile.save()
 
     def test_unauthenticated_cant_access(self):
         """Test that when unauthenticated user try to access profile page, it will redirect to login page."""
