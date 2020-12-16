@@ -15,7 +15,7 @@ class CalorieModelTest(TestCase):
     def test_food_name(self):
         """Test str of food."""
         self.assertEqual(str(self.food), "chicken")
-        self.assertEqual(str(self.food2, "potato"))
+        self.assertEqual(str(self.food2), "potato")
 
 
 class ExerciseModelTest(TestCase):
