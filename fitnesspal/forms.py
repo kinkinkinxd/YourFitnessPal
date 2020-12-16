@@ -32,7 +32,7 @@ class ProfileUpdateForm(forms.ModelForm):
         input_age = cleaned_data.get("age")
         input_goal = cleaned_data.get("goal")
         if input_gender != "Male" and input_gender != "Female":
-            raise forms.ValidationError("Please input only male or female!")
+            raise forms.ValidationError("Please input only Male or Female!")
         if input_weight < 0 or input_height < 0 or input_age < 0 or input_goal < 0:
             raise forms.ValidationError("Please input positive number!")
         return cleaned_data
