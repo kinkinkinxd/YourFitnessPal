@@ -39,7 +39,7 @@ def exercise(request):
 
 
 def index(request):
-    """Index views."""
+    """Views for home page"""
     return render(request, 'fitnesspal/index.html')
 
 
@@ -308,7 +308,7 @@ def delete_food(request):
     this_profile = Profile.objects.filter(user=request.user).first()
     this_profile.calories_set.remove(this_food)
     messages.success(request, f'This food has been deleted from your account!')
-    return render(request, 'fitnesspal/profile.html')
+    return render(request, 'fitnesspal/index.html')
 
 
 @login_required
@@ -318,7 +318,7 @@ def delete_exercise(request):
     this_profile = Profile.objects.filter(user=request.user).first()
     this_profile.exercise_set.remove(this_exercise)
     messages.success(request, f'This food has been deleted from your account!')
-    return render(request, 'fitnesspal/profile.html')
+    return render(request, 'fitnesspal/index.html')
 
 
 @login_required

@@ -30,7 +30,7 @@
 <body>
 <!-- navigation bar -->
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-color">
-    <a href="{% url 'fitnesspal:index' %}"><img class="image-thumbnail" src="../../static/fitnesspal/images/logo.png" alt="logo" width="72" height="72"></a>
+    <a href="{% url 'fitnesspal:index' %}"><img class="image-thumbnail" src="{% static 'fitnesspal/images/logo.png' %}" alt="logo" width="72" height="72"></a>
     <h5 class="my-0 mr-md-auto font-weight-normal text-white">YourFitnessPal</h5>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-white" href="{% url 'fitnesspal:index' %}">Home</a>

@@ -135,7 +135,3 @@ LOGOUT_REDIRECT_URL = 'fitnesspal:index'
 # django_heroku.settings(locals(), test_runner=False)
 
 
-# if '/app' in os.environ['HOME']:
-#     import django_heroku
-#     django_heroku.settings(locals())
-

@@ -1,14 +1,20 @@
 {% extends 'fitnesspal/base.html' %}
 {% load crispy_forms_filters %}
 {% block content %}
+{% load static %}
 {% load crispy_forms_tags %}
+<head>
+    <link rel="stylesheet" href="{% static 'fitnesspal/table_BMI.css' %}">
+</head>
+
 <hr>
+
 <div class="container bootstrap snippet">
     <div class="row">
         {% if user.is_authenticated %}
   		    <div class="col-sm-10"><h1>{{ user.username }}'s profile</h1></div>
         {% endif %}
-    	    <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="../../static/fitnesspal/images/logo.png"></a></div>
+    	    <div class="col-sm-2"><a class="pull-right"><img title="profile image" class="img-circle img-responsive" src="../../static/fitnesspal/images/logo.png"></a></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -44,11 +50,13 @@
                 </div><!--/tab-pane-->
           </div><!--/tab-content-->
 
+
+
             <fieldset>
                 <legend>BMI</legend>
                     <label for="bmi" id="bmi_label">Your calculated BMI is: {{ BMI|floatformat:2}}</label>
-                    <input type="text" name="bmi" id="bmi" readonly="readonly">
             </fieldset>
+
 
           <div class="form-group">
                 <div class="col-xs-12">
@@ -60,5 +68,44 @@
         </form>
         </div><!--/col-9-->
     </div><!--/row-->
+    <section class="bmi-calculator-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" style = "width: 800px;margin: 0 auto;margin-bottom: 100px;">
+                    <div class="section-title chart-title">
+                        <h2>BMI CALCULATOR CHART</h2>
+                    </div>
+                    <div class="chart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bmi</th>
+                                    <th>WEIGHT STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="point">Below 18.5</td>
+                                    <td>Underweight</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">18.5 - 24.9</td>
+                                    <td>Healthy</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">25.0 - 29.9</td>
+                                    <td>Overweight</td>
+                                </tr>
+                                <tr>
+                                    <td class="point">30.0 - and Above</td>
+                                    <td>Obese</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 {% endblock %}

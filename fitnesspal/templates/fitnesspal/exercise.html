@@ -1,4 +1,5 @@
 {% extends 'fitnesspal/base.html' %}
+{% load static %}
 {% block content %}
     <body>
     <div class="container">
@@ -7,7 +8,7 @@
                 <form action="{% url 'fitnesspal:calculate_exercise' %}" method='POST'>
                     {% csrf_token %}
                     <div class="form-group row">
-                        <img class="logo" src="../../static/fitnesspal/images/dumbell.png">
+                        <img class="logo" src="{% static 'fitnesspal/images/dumbell.png' %}">
                         <div class="col-xs-2">
                             <label for="weight">Weight: </label>
 

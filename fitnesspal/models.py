@@ -8,7 +8,7 @@ class Profile(models.Model):
     """Class for profile models."""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    goal = models.IntegerField(default=2000)
+    goal = models.IntegerField(default=0)
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=100, default='')
     weight = models.IntegerField(default=0)
@@ -22,8 +22,8 @@ class Profile(models.Model):
 class Calories(models.Model):
     """Class for calories models."""
 
-    food_name = models.CharField(max_length=20)
-    unit = models.CharField(max_length=20, default='')
+    food_name = models.CharField(max_length=100)
+    unit = models.CharField(max_length=100, default='')
     calories = models.IntegerField(default=0)
     cholesterol = models.IntegerField(default=0)
     sodium = models.IntegerField(default=0)
@@ -50,7 +50,7 @@ class Calories(models.Model):
 class Exercise(models.Model):
     """Class for exercise models."""
 
-    exercise_name = models.CharField(max_length=20)
+    exercise_name = models.CharField(max_length=100)
     calories = models.IntegerField(default=0)
     duration = models.IntegerField(default=0)
     met = models.IntegerField(default=0)
@@ -60,3 +60,4 @@ class Exercise(models.Model):
     def __str__(self):
         """Return the exercise name."""
         return self.exercise_name
+
