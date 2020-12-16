@@ -106,14 +106,13 @@ class ProfileViewTest(TestCase):
             'password': 'password'
         }
         self.username = User.objects.create_user(**self.user)
-        self.profile = Profile.objects.create(user=self.username)
+        self.profile = Profile.objects.create(user=self.username, goal = 2000)
         self.client.post(reverse('login'), self.user)
         self.exercise = Exercise.objects.create(exercise_name="Trampoline", calories=52, user=self.profile,
                                                 date=timezone.now())
         self.food = Calories.objects.create(food_name="chicken", unit=1, calories=187, user=self.profile,
                                             date=timezone.now())
-        self.profile.goal = 2000
-        self.profile.save()
+
 
     def test_unauthenticated_cant_access(self):
         """Test that when unauthenticated user try to access profile page, it will redirect to login page."""
