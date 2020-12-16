@@ -132,6 +132,6 @@ LOGIN_REDIRECT_URL = 'fitnesspal:index'
 LOGOUT_REDIRECT_URL = 'fitnesspal:index'
 
 
-# django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
 
 
