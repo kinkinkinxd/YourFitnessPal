@@ -197,5 +197,3 @@ class ProfileEditViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, "/accounts/login/?next=/profile/edit/")
         self.assertRedirects(response, '/accounts/login/?next=%2Fprofile%2Fedit%2F')
-
-
