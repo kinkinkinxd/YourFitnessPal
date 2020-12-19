@@ -26,3 +26,11 @@ YourFitnessPal web application is a website for help you to have a better life a
 * [@kinkinkinxd](https://github.com/kinkinkinxd)
 * [@BellBoyZz](https://github.com/BellBoyZz)
 * [@PanitanPlengkham](https://github.com/PanitanPlengkham)
+
+## Presentation
+ * [Presentation slide](https://docs.google.com/presentation/d/1hLhWhxte1g4DDGMbHwDJ8oMZkC7nm07jIHz9o_8yCGg/edit?usp=sharing) 
+ 
+## Application URL
+ * https://your-fitnesspal.herokuapp.com/
+ 
+ 
